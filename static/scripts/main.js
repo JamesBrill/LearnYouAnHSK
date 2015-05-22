@@ -11,14 +11,14 @@ $(document).ready(function ()
 		height = $('#drawing').height();
 		draw = SVG('drawing').size("100%", "100%");
 		var background = draw.rect("100%", "100%");
-		drawMemoryWord(0.5 * width, 0.3 * height, "月", "yuè", "month");
+		drawMemoryWord(MemoryWords[0]);
 	}
 
-	var drawMemoryWord = function(width, height, characters, pinyin, meaning)
+	var drawMemoryWord = function(memoryWord)
 	{
-		var a = draw.text(characters);
+		var a = draw.text(memoryWord.characters);
 		a.fill("white");
-		a.move(width, height);
+		a.move(0.5 * width, 0.3 * height);
 		a.font({
 			family: "SimHei",
 			size: 200,			
@@ -27,12 +27,12 @@ $(document).ready(function ()
 
 		var b = draw.text(function(add)
 		{
-			add.tspan(pinyin).newLine();
-			add.tspan(meaning).newLine();
+			add.tspan(memoryWord.pinyin).newLine();
+			add.tspan(memoryWord.meaning).newLine();
 		});
 
 		b.fill("white");
-		b.move(width, height + 200);
+		b.move(0.5 * width, 0.3 * height + 200);
 		b.font({
 			family: "Helvetica",
 			size: 150,
