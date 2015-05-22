@@ -2,7 +2,7 @@ var width;
 var height;
 var draw;
 var TEXT_SIZE = 200;
-var charactersText;
+var chineseText;
 var translationText;
 var translationShown = true;
 var currentMemoryWordIndex = 0;
@@ -30,9 +30,9 @@ $(document).ready(function ()
 
 	var drawMemoryWord = function(memoryWord)
 	{
-		if (charactersText != undefined && translationShown)
+		if (chineseText != undefined && translationShown)
 		{
-			charactersText.clear();
+			chineseText.clear();
 		}
 
 		if (translationText != undefined && translationShown)
@@ -42,10 +42,14 @@ $(document).ready(function ()
 
 		if (translationShown)
 		{
-			charactersText = draw.text(memoryWord.characters);
-			charactersText.fill("white");
-			charactersText.move(0.5 * width, 0.3 * height);
-			charactersText.font({
+			chineseText = draw.text(function(add)
+			{
+				add.tspan(memoryWord.characters);
+				add.tspan(memoryWord.pinyin).newLine();
+			});
+			chineseText.fill("white");
+			chineseText.move(0.5 * width, 0.3 * height);
+			chineseText.font({
 				family: "SimHei",
 				size: TEXT_SIZE,			
 				anchor: "middle",
@@ -57,12 +61,11 @@ $(document).ready(function ()
 		{
 			translationText = draw.text(function(add)
 			{
-				add.tspan(memoryWord.pinyin).newLine();
 				add.tspan(memoryWord.meaning).newLine();
 			});
 
 			translationText.fill("white");
-			translationText.move(0.5 * width, 0.3 * height + TEXT_SIZE);
+			translationText.move(0.5 * width, 0.3 * height + 2 * TEXT_SIZE);
 			translationText.font({
 				family: "Helvetica",
 				size: 0.75 * TEXT_SIZE,
