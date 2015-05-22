@@ -2,6 +2,8 @@ var width;
 var height;
 var draw;
 var TEXT_SIZE = 200;
+var charactersText;
+var translationText;
 
 $(document).ready(function () 
 {  
@@ -12,29 +14,45 @@ $(document).ready(function ()
 		height = $('#drawing').height();
 		draw = SVG('drawing').size("100%", "100%");
 		var background = draw.rect("100%", "100%");
-		drawMemoryWord(MemoryWords[0]);
+		background.click(displayNextMemoryWord);
+	}
+
+	var displayNextMemoryWord = function()
+	{
+		var randomIndex = Math.floor(Math.random() * MemoryWords.length);
+		drawMemoryWord(MemoryWords[randomIndex]);
 	}
 
 	var drawMemoryWord = function(memoryWord)
 	{
-		var a = draw.text(memoryWord.characters);
-		a.fill("white");
-		a.move(0.5 * width, 0.3 * height);
-		a.font({
+		if (charactersText != undefined)
+		{
+			charactersText.clear();
+		}
+
+		if (translationText != undefined)
+		{
+			translationText.clear();
+		}
+
+		charactersText = draw.text(memoryWord.characters);
+		charactersText.fill("white");
+		charactersText.move(0.5 * width, 0.3 * height);
+		charactersText.font({
 			family: "SimHei",
 			size: TEXT_SIZE,			
 			anchor: "middle"
 		});
 
-		var b = draw.text(function(add)
+		translationText = draw.text(function(add)
 		{
 			add.tspan(memoryWord.pinyin).newLine();
 			add.tspan(memoryWord.meaning).newLine();
 		});
 
-		b.fill("white");
-		b.move(0.5 * width, 0.3 * height + TEXT_SIZE);
-		b.font({
+		translationText.fill("white");
+		translationText.move(0.5 * width, 0.3 * height + TEXT_SIZE);
+		translationText.font({
 			family: "Helvetica",
 			size: 0.75 * TEXT_SIZE,
 			anchor: "middle"
