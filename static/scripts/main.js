@@ -48,7 +48,8 @@ $(document).ready(function ()
 			charactersText.font({
 				family: "SimHei",
 				size: TEXT_SIZE,			
-				anchor: "middle"
+				anchor: "middle",
+				class: "disable_text_highlighting" 
 			});
 			translationShown = false;
 		}
@@ -65,7 +66,8 @@ $(document).ready(function ()
 			translationText.font({
 				family: "Helvetica",
 				size: 0.75 * TEXT_SIZE,
-				anchor: "middle"
+				anchor: "middle",
+				class: "disable_text_highlighting" 
 			});	
 			translationShown = true;
 		}			
