@@ -4,6 +4,8 @@ var draw;
 var TEXT_SIZE = 200;
 var charactersText;
 var translationText;
+var translationShown = true;
+var currentMemoryWordIndex = 0;
 
 $(document).ready(function () 
 {  
@@ -19,44 +21,54 @@ $(document).ready(function ()
 
 	var displayNextMemoryWord = function()
 	{
-		var randomIndex = Math.floor(Math.random() * MemoryWords.length);
-		drawMemoryWord(MemoryWords[randomIndex]);
+		if (translationShown)
+		{
+			currentMemoryWordIndex = Math.floor(Math.random() * MemoryWords.length);
+		}
+		drawMemoryWord(MemoryWords[currentMemoryWordIndex]);
 	}
 
 	var drawMemoryWord = function(memoryWord)
 	{
-		if (charactersText != undefined)
+		if (charactersText != undefined && translationShown)
 		{
 			charactersText.clear();
 		}
 
-		if (translationText != undefined)
+		if (translationText != undefined && translationShown)
 		{
 			translationText.clear();
 		}
 
-		charactersText = draw.text(memoryWord.characters);
-		charactersText.fill("white");
-		charactersText.move(0.5 * width, 0.3 * height);
-		charactersText.font({
-			family: "SimHei",
-			size: TEXT_SIZE,			
-			anchor: "middle"
-		});
-
-		translationText = draw.text(function(add)
+		if (translationShown)
 		{
-			add.tspan(memoryWord.pinyin).newLine();
-			add.tspan(memoryWord.meaning).newLine();
-		});
+			charactersText = draw.text(memoryWord.characters);
+			charactersText.fill("white");
+			charactersText.move(0.5 * width, 0.3 * height);
+			charactersText.font({
+				family: "SimHei",
+				size: TEXT_SIZE,			
+				anchor: "middle"
+			});
+			translationShown = false;
+		}
+		else
+		{
+			translationText = draw.text(function(add)
+			{
+				add.tspan(memoryWord.pinyin).newLine();
+				add.tspan(memoryWord.meaning).newLine();
+			});
 
-		translationText.fill("white");
-		translationText.move(0.5 * width, 0.3 * height + TEXT_SIZE);
-		translationText.font({
-			family: "Helvetica",
-			size: 0.75 * TEXT_SIZE,
-			anchor: "middle"
-		});				
+			translationText.fill("white");
+			translationText.move(0.5 * width, 0.3 * height + TEXT_SIZE);
+			translationText.font({
+				family: "Helvetica",
+				size: 0.75 * TEXT_SIZE,
+				anchor: "middle"
+			});	
+			translationShown = true;
+		}			
 	}
 
 	if (SVG.supported)
