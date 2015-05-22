@@ -1,6 +1,7 @@
 var width;
 var height;
 var draw;
+var TEXT_SIZE = 200;
 
 $(document).ready(function () 
 {  
@@ -21,7 +22,7 @@ $(document).ready(function ()
 		a.move(0.5 * width, 0.3 * height);
 		a.font({
 			family: "SimHei",
-			size: 200,			
+			size: TEXT_SIZE,			
 			anchor: "middle"
 		});
 
@@ -32,10 +33,10 @@ $(document).ready(function ()
 		});
 
 		b.fill("white");
-		b.move(0.5 * width, 0.3 * height + 200);
+		b.move(0.5 * width, 0.3 * height + TEXT_SIZE);
 		b.font({
 			family: "Helvetica",
-			size: 150,
+			size: 0.75 * TEXT_SIZE,
 			anchor: "middle"
 		});				
 	}
