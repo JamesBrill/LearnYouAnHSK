@@ -2,10 +2,6 @@ var width;
 var height;
 var draw;
 var TEXT_SIZE = 200;
-var chineseText;
-var translationText;
-var translationShown = true;
-var currentMemoryWordIndex = 0;
 var flashcardController = new FlashcardController();
 
 $(document).ready(function () 
