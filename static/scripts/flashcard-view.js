@@ -1,18 +1,23 @@
 function FlashcardView() 
 {
+	$('#drawing').height("95vh");
+	this.width = $('#drawing').width();
+	this.height = $('#drawing').height();
+	this.draw = SVG('drawing').size("100%", "100%");
+	this.background = this.draw.rect("100%", "100%");
 	this.question;
 	this.answer;
 }
 
 FlashcardView.prototype.displayQuestion = function(memoryWord)
 {
-	this.question = draw.text(function(add)
+	this.question = this.draw.text(function(add)
 	{
 		add.tspan(memoryWord.characters);
 		add.tspan(memoryWord.pinyin).newLine();
 	});
 	this.question.fill("white");
-	this.question.move(0.5 * width, 0.3 * height);
+	this.question.move(0.5 * this.width, 0.3 * this.height);
 	this.question.font({
 		family: "SimHei",
 		size: TEXT_SIZE,			
@@ -23,13 +28,13 @@ FlashcardView.prototype.displayQuestion = function(memoryWord)
 
 FlashcardView.prototype.displayAnswer = function(memoryWord)
 {
-	this.answer = draw.text(function(add)
+	this.answer = this.draw.text(function(add)
 	{
 		add.tspan(memoryWord.meaning).newLine();
 	});
 
 	this.answer.fill("white");
-	this.answer.move(0.5 * width, 0.3 * height + 2 * TEXT_SIZE);
+	this.answer.move(0.5 * this.width, 0.3 * this.height + 2 * TEXT_SIZE);
 	this.answer.font({
 		family: "Helvetica",
 		size: 0.75 * TEXT_SIZE,

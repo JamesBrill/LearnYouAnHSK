@@ -1,18 +1,11 @@
-var width;
-var height;
-var draw;
 var TEXT_SIZE = 200;
-var flashcardController = new FlashcardController();
+var flashcardController;
 
 $(document).ready(function () 
 {  
 	var init = function()
 	{
-		$('#drawing').height("95vh");
-		width = $('#drawing').width();
-		height = $('#drawing').height();
-		draw = SVG('drawing').size("100%", "100%");
-		var background = draw.rect("100%", "100%");
+		flashcardController = new FlashcardController();
 		flashcardController.performPhase();
 	}
 
