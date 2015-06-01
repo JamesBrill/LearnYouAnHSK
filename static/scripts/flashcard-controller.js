@@ -27,7 +27,7 @@ FlashcardController.prototype.performPhase = function()
 	switch (phase)
 	{
 		case "DisplayQuestion":
-			var memoryWord = this.memoryWordSession.getMemoryWord();
+			var memoryWord = this.memoryWordSession.currentWord;
 			this.flashcardView.displayQuestion(memoryWord);
 			this.nextPhase();
 			break;
@@ -35,7 +35,7 @@ FlashcardController.prototype.performPhase = function()
 			this.interactionController.beginAwaitingSpacebar();
 			break;
 		case "DisplayAnswer":
-			var memoryWord = this.memoryWordSession.getMemoryWord();
+			var memoryWord = this.memoryWordSession.currentWord;
 			this.flashcardView.displayAnswer(memoryWord);
 			this.nextPhase();
 			break;
@@ -54,18 +54,18 @@ FlashcardController.prototype.performPhase = function()
 
 FlashcardController.prototype.markFlashcardAsEasy = function()
 {
-	alert("EASY");
+	this.memoryWordSession.markCurrentWordAsEasy();
 	this.nextPhase();
 }
 
 FlashcardController.prototype.markFlashcardAsMedium = function()
 {
-	alert("MEDIUM");
+	this.memoryWordSession.markCurrentWordAsMedium();
 	this.nextPhase();
 }
 
 FlashcardController.prototype.markFlashcardAsHard = function()
 {
-	alert("HARD");
+	this.memoryWordSession.markCurrentWordAsHard();
 	this.nextPhase();
 }
