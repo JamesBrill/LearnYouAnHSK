@@ -12,10 +12,6 @@ InteractionController.prototype.beginAwaitingDifficultyKey = function()
 	$(document).keypress(InteractionController.difficultyKeyHandler);
 }
 
-function KeyCode() {}
-
-KeyCode.SPACEBAR = 32;
-
 InteractionController.spacebarHandler = function(e)
 {
 	var code = e.keyCode || e.which;
@@ -24,10 +20,6 @@ InteractionController.spacebarHandler = function(e)
 		flashcardController.nextPhase();
 	}
 }
-
-KeyCode.A = 97;
-KeyCode.S = 115;
-KeyCode.D = 100;
 
 InteractionController.difficultyKeyHandler = function(e)
 {
@@ -45,5 +37,3 @@ InteractionController.difficultyKeyHandler = function(e)
 		flashcardController.markFlashcardAsHard();
 	}	
 }
-
-
