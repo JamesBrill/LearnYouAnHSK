@@ -1,10 +1,11 @@
 function MemoryWordSession() 
 {
-	this.currentWord = MemoryWords[0];
-	this.currentDifficulty = "hard";
+	this.currentWord;
+	this.currentDifficulty;
 	this.easyWords = [];
 	this.mediumWords = [];
 	this.hardWords = MemoryWords.slice();
+	this.updateMemoryWords();
 }
 
 MemoryWordSession.prototype.updateMemoryWords = function()
