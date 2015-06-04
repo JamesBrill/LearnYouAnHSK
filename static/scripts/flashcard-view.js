@@ -8,6 +8,7 @@ function FlashcardView()
 	this.question;
 	this.answer;
 	this.FLASHCARD_TOP = 0.2 * this.height;
+	this.englishSize = 0.75 * TEXT_SIZE;
 }
 
 FlashcardView.prototype.displayQuestion = function(memoryWord)
@@ -71,6 +72,7 @@ FlashcardView.prototype.drawChinese = function(chinese, height)
 
 FlashcardView.prototype.drawEnglish = function(english, height)
 {
+	this.englishSize = (english.length > 15) ? 0.5 * TEXT_SIZE : 0.75 * TEXT_SIZE;
 	var text = this.draw.text(function(add)
 	{
 		add.tspan(english).newLine();
@@ -79,7 +81,7 @@ FlashcardView.prototype.drawEnglish = function(english, height)
 	text.move(0.5 * this.width, height);
 	text.font({
 		family: "Helvetica",
-		size: 0.75 * TEXT_SIZE,
+		size: this.englishSize,
 		anchor: "middle",
 		class: "disable_text_highlighting" 
 	});	
