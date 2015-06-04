@@ -7,6 +7,7 @@ function FlashcardView()
 	this.background = this.draw.rect("100%", "100%");
 	this.question;
 	this.answer;
+	this.FLASHCARD_TOP = 0.2 * this.height;
 }
 
 FlashcardView.prototype.displayQuestion = function(memoryWord)
@@ -14,21 +15,21 @@ FlashcardView.prototype.displayQuestion = function(memoryWord)
 	var question;
 	if (FLASHCARD_DISPLAY_MODE == "CHARACTERS")
 	{
-		question = this.drawChinese(memoryWord.characters, 0.3 * this.height);
+		question = this.drawChinese(memoryWord.characters, this.FLASHCARD_TOP);
 	}
 	else if (FLASHCARD_DISPLAY_MODE == "PINYIN")
 	{
-		question = this.drawChinese(memoryWord.pinyin, 0.3 * this.height);
+		question = this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP);
 	}
 	else if (FLASHCARD_DISPLAY_MODE == "ENGLISH")
 	{
-		question = this.drawEnglish(memoryWord.meaning, 0.3 * this.height);
+		question = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP);
 	}
 	else if (FLASHCARD_DISPLAY_MODE == "CHARACTERS_AND_PINYIN")
 	{
 		var question = this.draw.group();
-		question.add(this.drawChinese(memoryWord.characters, 0.3 * this.height));
-		question.add(this.drawChinese(memoryWord.pinyin, 0.3 * this.height + TEXT_SIZE));
+		question.add(this.drawChinese(memoryWord.characters, this.FLASHCARD_TOP));
+		question.add(this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + TEXT_SIZE));
 	}
 	this.question = question;
 }
@@ -38,15 +39,15 @@ FlashcardView.prototype.displayAnswer = function(memoryWord)
 	var answer;
 	if (FLASHCARD_DISPLAY_MODE == "CHARACTERS" || FLASHCARD_DISPLAY_MODE == "PINYIN")
 	{
-		answer = this.drawEnglish(memoryWord.meaning, 0.3 * this.height + TEXT_SIZE);
+		answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + TEXT_SIZE);
 	}
 	else if (FLASHCARD_DISPLAY_MODE == "ENGLISH")
 	{
-		answer = this.drawChinese(memoryWord.pinyin, 0.3 * this.height + 0.75 * TEXT_SIZE);
+		answer = this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + 0.75 * TEXT_SIZE);
 	}
 	else if (FLASHCARD_DISPLAY_MODE == "CHARACTERS_AND_PINYIN")
 	{
-		answer = this.drawEnglish(memoryWord.meaning, 0.3 * this.height + 2 * TEXT_SIZE);
+		answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + 2 * TEXT_SIZE);
 	}
 	this.answer = answer;
 }
