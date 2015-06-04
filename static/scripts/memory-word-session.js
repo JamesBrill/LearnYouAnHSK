@@ -27,8 +27,8 @@ MemoryWordSession.prototype.updateMemoryWords = function()
 		return;
 	}
 
-	var difficultySelector = Math.floor(Math.random() * 3);
-	if (difficultySelector == 0)
+	var difficulty = this.getRandomDifficulty();
+	if (difficulty == 0)
 	{
 		this.setMediumWord();
 	}
@@ -52,6 +52,11 @@ MemoryWordSession.prototype.setMediumWord = function()
 	this.currentDifficulty = "medium";	
 }
 
+MemoryWordSession.prototype.getRandomDifficulty = function()
+{
+	var difficultyRange = Math.max(20 / this.mediumWords.length, 3);
+	return Math.floor(Math.random() * difficultyRange);
+}
 
 MemoryWordSession.prototype.markCurrentWordAsEasy = function()
 {
