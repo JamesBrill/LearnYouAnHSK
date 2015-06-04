@@ -11,36 +11,78 @@ function FlashcardView()
 
 FlashcardView.prototype.displayQuestion = function(memoryWord)
 {
-	this.question = this.draw.text(function(add)
+	var question;
+	if (FLASHCARD_DISPLAY_MODE == "CHARACTERS")
 	{
-		add.tspan(memoryWord.characters);
-		add.tspan(memoryWord.pinyin).newLine();
-	});
-	this.question.fill("white");
-	this.question.move(0.5 * this.width, 0.3 * this.height);
-	this.question.font({
-		family: "SimHei",
-		size: TEXT_SIZE,			
-		anchor: "middle",
-		class: "disable_text_highlighting" 
-	});
+		question = this.drawChinese(memoryWord.characters, 0.3 * this.height);
+	}
+	else if (FLASHCARD_DISPLAY_MODE == "PINYIN")
+	{
+		question = this.drawChinese(memoryWord.pinyin, 0.3 * this.height);
+	}
+	else if (FLASHCARD_DISPLAY_MODE == "ENGLISH")
+	{
+		question = this.drawEnglish(memoryWord.meaning, 0.3 * this.height);
+	}
+	else if (FLASHCARD_DISPLAY_MODE == "CHARACTERS_AND_PINYIN")
+	{
+		var question = this.draw.group();
+		question.add(this.drawChinese(memoryWord.characters, 0.3 * this.height));
+		question.add(this.drawChinese(memoryWord.pinyin, 0.3 * this.height + TEXT_SIZE));
+	}
+	this.question = question;
 }
 
 FlashcardView.prototype.displayAnswer = function(memoryWord)
 {
-	this.answer = this.draw.text(function(add)
+	var answer;
+	if (FLASHCARD_DISPLAY_MODE == "CHARACTERS" || FLASHCARD_DISPLAY_MODE == "PINYIN")
 	{
-		add.tspan(memoryWord.meaning).newLine();
-	});
+		answer = this.drawEnglish(memoryWord.meaning, 0.3 * this.height + TEXT_SIZE);
+	}
+	else if (FLASHCARD_DISPLAY_MODE == "ENGLISH")
+	{
+		answer = this.drawChinese(memoryWord.pinyin, 0.3 * this.height + 0.75 * TEXT_SIZE);
+	}
+	else if (FLASHCARD_DISPLAY_MODE == "CHARACTERS_AND_PINYIN")
+	{
+		answer = this.drawEnglish(memoryWord.meaning, 0.3 * this.height + 2 * TEXT_SIZE);
+	}
+	this.answer = answer;
+}
 
-	this.answer.fill("white");
-	this.answer.move(0.5 * this.width, 0.3 * this.height + 2 * TEXT_SIZE);
-	this.answer.font({
+FlashcardView.prototype.drawChinese = function(chinese, height)
+{
+	var text = this.draw.text(function(add)
+	{
+		add.tspan(chinese).newLine();
+	});
+	text.fill("white");
+	text.move(0.5 * this.width, height);
+	text.font({
+		family: "SimHei",
+		size: TEXT_SIZE,			
+		anchor: "middle",
+		class: "disable_text_highlighting" 
+	});	
+	return text;
+}
+
+FlashcardView.prototype.drawEnglish = function(english, height)
+{
+	var text = this.draw.text(function(add)
+	{
+		add.tspan(english).newLine();
+	});
+	text.fill("white");
+	text.move(0.5 * this.width, height);
+	text.font({
 		family: "Helvetica",
 		size: 0.75 * TEXT_SIZE,
 		anchor: "middle",
 		class: "disable_text_highlighting" 
 	});	
+	return text;
 }
 
 FlashcardView.prototype.clearFlashcard = function()
