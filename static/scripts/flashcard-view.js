@@ -14,23 +14,23 @@ function FlashcardView()
 FlashcardView.prototype.displayQuestion = function(memoryWord)
 {
 	var question;
-	if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.CHARACTERS)
+	switch (FLASHCARD_DISPLAY_MODE)
 	{
-		question = this.drawChinese(memoryWord.characters, this.FLASHCARD_TOP);
-	}
-	else if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.PINYIN)
-	{
-		question = this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP);
-	}
-	else if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.ENGLISH)
-	{
-		question = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP);
-	}
-	else if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.CHARACTERS_AND_PINYIN)
-	{
-		var question = this.draw.group();
-		question.add(this.drawChinese(memoryWord.characters, this.FLASHCARD_TOP));
-		question.add(this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + TEXT_SIZE));
+		case FlashcardDisplayMode.CHARACTERS:
+			question = this.drawChinese(memoryWord.characters, this.FLASHCARD_TOP);
+			break;
+		case FlashcardDisplayMode.PINYIN:
+			question = this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP);
+			break;
+		case FlashcardDisplayMode.ENGLISH:
+			question = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP);
+			break;
+		case FlashcardDisplayMode.CHARACTERS_AND_PINYIN:
+			var question = this.draw.group();
+			question.add(this.drawChinese(memoryWord.characters, this.FLASHCARD_TOP));
+			question.add(this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + TEXT_SIZE));
+		default:
+			console.log("Invalid flashcard display mode.")
 	}
 	this.question = question;
 }
@@ -38,18 +38,19 @@ FlashcardView.prototype.displayQuestion = function(memoryWord)
 FlashcardView.prototype.displayAnswer = function(memoryWord)
 {
 	var answer;
-	if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.CHARACTERS || 
-		FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.PINYIN)
+	switch (FLASHCARD_DISPLAY_MODE)
 	{
-		answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + TEXT_SIZE);
-	}
-	else if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.ENGLISH)
-	{
-		answer = this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + 0.75 * TEXT_SIZE);
-	}
-	else if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.CHARACTERS_AND_PINYIN)
-	{
-		answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + 2 * TEXT_SIZE);
+		case FlashcardDisplayMode.CHARACTERS:
+		case FlashcardDisplayMode.PINYIN:
+			answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + TEXT_SIZE);
+			break;
+		case FlashcardDisplayMode.ENGLISH:
+			answer = this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + 0.75 * TEXT_SIZE);
+			break;
+		case FlashcardDisplayMode.CHARACTERS_AND_PINYIN:
+			answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + 2 * TEXT_SIZE);
+		default:
+			console.log("Invalid flashcard display mode.")
 	}
 	this.answer = answer;
 }
