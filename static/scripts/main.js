@@ -1,5 +1,5 @@
 var TEXT_SIZE = window.innerWidth / 10;
-var FLASHCARD_DISPLAY_MODE = "CHARACTERS_AND_PINYIN";
+var FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS_AND_PINYIN;
 var flashcardController;
 
 $(document).ready(function () 
