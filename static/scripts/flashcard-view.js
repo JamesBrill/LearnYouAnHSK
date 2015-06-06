@@ -42,13 +42,13 @@ FlashcardView.prototype.displayAnswer = function(memoryWord)
 	{
 		case FlashcardDisplayMode.CHARACTERS:
 		case FlashcardDisplayMode.PINYIN:
-			answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + TEXT_SIZE);
+			answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + 1.2 * TEXT_SIZE);
 			break;
 		case FlashcardDisplayMode.ENGLISH:
 			answer = this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + 0.75 * TEXT_SIZE);
 			break;
 		case FlashcardDisplayMode.CHARACTERS_AND_PINYIN:
-			answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + 2 * TEXT_SIZE);
+			answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + 2.4 * TEXT_SIZE);
 		default:
 			console.log("Invalid flashcard display mode.")
 	}
