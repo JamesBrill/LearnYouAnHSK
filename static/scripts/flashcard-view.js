@@ -29,6 +29,7 @@ FlashcardView.prototype.displayQuestion = function(memoryWord)
 			var question = this.draw.group();
 			question.add(this.drawChinese(memoryWord.characters, this.FLASHCARD_TOP));
 			question.add(this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + TEXT_SIZE));
+			break;
 		default:
 			console.log("Invalid flashcard display mode.")
 	}
@@ -49,6 +50,7 @@ FlashcardView.prototype.displayAnswer = function(memoryWord)
 			break;
 		case FlashcardDisplayMode.CHARACTERS_AND_PINYIN:
 			answer = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP + 2.4 * TEXT_SIZE);
+			break;
 		default:
 			console.log("Invalid flashcard display mode.")
 	}
