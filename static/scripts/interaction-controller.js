@@ -24,15 +24,11 @@ InteractionController.spacebarHandler = function(e)
 InteractionController.difficultyKeyHandler = function(e)
 {
 	var code = e.keyCode || e.which;
-	if (code == KeyCode.A)
+	if (code == KeyCode.Q)
 	{
 		flashcardController.markFlashcardAsEasy();
 	}	
-	else if (code == KeyCode.S)
-	{
-		flashcardController.markFlashcardAsMedium();
-	}	
-	else if (code == KeyCode.D)
+	else if (code == KeyCode.W)
 	{
 		flashcardController.markFlashcardAsHard();
 	}	

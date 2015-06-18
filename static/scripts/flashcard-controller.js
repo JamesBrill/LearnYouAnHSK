@@ -58,14 +58,7 @@ FlashcardController.prototype.markFlashcardAsEasy = function()
 	this.nextPhase();
 }
 
-FlashcardController.prototype.markFlashcardAsMedium = function()
-{
-	this.memoryWordSession.markCurrentWordAsMedium();
-	this.nextPhase();
-}
-
 FlashcardController.prototype.markFlashcardAsHard = function()
 {
-	this.memoryWordSession.markCurrentWordAsHard();
 	this.nextPhase();
 }
