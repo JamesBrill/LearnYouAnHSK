@@ -90,7 +90,8 @@ FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour, offset, cli
 		family: "Helvetica",
 		size: 0.15 * this.answerBoxSize,
 		anchor: "middle",
-		class: "disable_text_highlighting" 
+		class: "disable_text_highlighting",
+		cursor: "pointer" 
 	});	
 	text.click(clickHandler);	
 	return { box: box, text: text };
