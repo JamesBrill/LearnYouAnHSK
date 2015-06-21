@@ -81,6 +81,7 @@ FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour, offset, cli
 	{		
 		box.attr({ stroke: "white", "stroke-width": 0.03 * this.answerBoxSize });
 	}.bind(this));
+	box.attr({ cursor: "pointer" });
 
  	var text = this.draw.text(function(add)
 	{
@@ -162,7 +163,8 @@ FlashcardView.prototype.drawChinese = function(chinese, height)
 		family: "SimHei",
 		size: TEXT_SIZE,			
 		anchor: "middle",
-		class: "disable_text_highlighting" 
+		class: "disable_text_highlighting",
+		cursor: "default"  
 	});	
 	return text;
 }
@@ -180,7 +182,8 @@ FlashcardView.prototype.drawEnglish = function(english, height)
 		family: "Helvetica",
 		size: this.englishSize,
 		anchor: "middle",
-		class: "disable_text_highlighting" 
+		class: "disable_text_highlighting",
+		cursor: "default"  
 	});	
 	return text;
 }
