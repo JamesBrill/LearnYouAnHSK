@@ -7,8 +7,19 @@ function FlashcardView()
 	this.background = this.draw.rect("100%", "100%");
 	this.question;
 	this.answer;
-	this.FLASHCARD_TOP = 0.2 * this.height;
+	this.FLASHCARD_TOP = 0.1 * this.height;
 	this.englishSize = 0.75 * TEXT_SIZE;
+	this.answerBoxes;
+	this.answerBoxSize = 1.2 * TEXT_SIZE;
+	if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.CHARACTERS_AND_PINYIN)
+	{
+		this.initAnswerBoxes(this.FLASHCARD_TOP + 3.6 * TEXT_SIZE);
+	}
+	else
+	{
+		this.initAnswerBoxes(this.FLASHCARD_TOP + 2.5 * TEXT_SIZE);
+	}
+	this.hideAnswerBoxes();
 }
 
 FlashcardView.prototype.displayQuestion = function(memoryWord)
@@ -36,6 +47,51 @@ FlashcardView.prototype.displayQuestion = function(memoryWord)
 	this.question = question;
 }
 
+FlashcardView.prototype.initAnswerBoxes = function(height)
+{
+	var easyBoxElements = this.drawAnswerBox(0.4 * this.width, height, "Too easy [Q]", "green");
+	var hardBoxElements = this.drawAnswerBox(0.6 * this.width, height, "Not easy [W]", "red");
+	this.answerBoxes = [ easyBoxElements, hardBoxElements ];
+}
+
+FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour)
+{
+	var box = this.draw.rect(this.answerBoxSize, 0.5 * this.answerBoxSize);
+	box.move(x - 0.5 * this.answerBoxSize, y);
+	box.fill(colour);
+	box.radius(0.05 * this.answerBoxSize);
+
+ 	var text = this.draw.text(function(add)
+	{
+		add.tspan(text).newLine();
+	});
+	text.fill("white");
+	text.move(x, y + 0.15 * this.answerBoxSize);
+	text.font({
+		family: "Helvetica",
+		size: 0.15 * this.answerBoxSize,
+		anchor: "middle",
+		class: "disable_text_highlighting" 
+	});		
+	return { box: box, text: text };
+}
+
+FlashcardView.prototype.showAnswerBoxes = function()
+{
+	this.answerBoxes[0].box.show();
+	this.answerBoxes[0].text.show()
+	this.answerBoxes[1].box.show()
+	this.answerBoxes[1].text.show()
+}
+
+FlashcardView.prototype.hideAnswerBoxes = function()
+{
+	this.answerBoxes[0].box.hide();
+	this.answerBoxes[0].text.hide()
+	this.answerBoxes[1].box.hide()
+	this.answerBoxes[1].text.hide()
+}
+
 FlashcardView.prototype.displayAnswer = function(memoryWord)
 {
 	var answer;
@@ -54,6 +110,7 @@ FlashcardView.prototype.displayAnswer = function(memoryWord)
 		default:
 			console.log("Invalid flashcard display mode.")
 	}
+	this.showAnswerBoxes();
 	this.answer = answer;
 }
 
