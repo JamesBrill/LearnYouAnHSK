@@ -72,3 +72,12 @@ FlashcardController.prototype.markFlashcardAsHard = function()
 	}
 	this.nextPhase();
 }
+
+FlashcardController.prototype.revealAnswer = function()
+{
+	var phase = this.flashcardPhases[this.flashcardPhaseIndex];
+	if (phase == "AwaitSpacebar")
+	{
+		this.nextPhase();
+	}	
+}

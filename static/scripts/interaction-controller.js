@@ -17,7 +17,7 @@ InteractionController.spacebarHandler = function(e)
 	var code = e.keyCode || e.which;
 	if (code == KeyCode.SPACEBAR)
 	{
-		flashcardController.nextPhase();
+		flashcardController.revealAnswer();
 	}
 	else
 	{

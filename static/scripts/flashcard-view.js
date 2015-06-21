@@ -52,26 +52,30 @@ FlashcardView.prototype.initAnswerBoxes = function(height)
 											 height, 
 											 ["Too easy [Q]"], 
 											 "green", 
-											 0.15 * this.answerBoxSize);
+											 0.15 * this.answerBoxSize,
+											 function() { flashcardController.markFlashcardAsEasy(); });
 	var showAnswerBoxElements = this.drawAnswerBox(0.5 * this.width, 
 												   height, 
 												   ["Show answer", "[Space]"], 
 												   "gray", 
-												   0.05 * this.answerBoxSize);
+												   0.05 * this.answerBoxSize,
+												   function() { flashcardController.revealAnswer(); });
 	var hardBoxElements = this.drawAnswerBox(0.7 * this.width, 
 											 height, 
 											 ["Not easy [W]"], 
 											 "red", 
-											 0.15 * this.answerBoxSize);
+											 0.15 * this.answerBoxSize,
+											 function() { flashcardController.markFlashcardAsHard(); });
 	this.answerBoxes = [ easyBoxElements, showAnswerBoxElements, hardBoxElements ];
 }
 
-FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour, offset)
+FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour, offset, clickHandler)
 {
 	var box = this.draw.rect(this.answerBoxSize, 0.5 * this.answerBoxSize);
 	box.move(x - 0.5 * this.answerBoxSize, y);
 	box.fill(colour);
 	box.radius(0.05 * this.answerBoxSize);
+	box.click(clickHandler);
 
  	var text = this.draw.text(function(add)
 	{
@@ -87,7 +91,8 @@ FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour, offset)
 		size: 0.15 * this.answerBoxSize,
 		anchor: "middle",
 		class: "disable_text_highlighting" 
-	});		
+	});	
+	text.click(clickHandler);	
 	return { box: box, text: text };
 }
 
