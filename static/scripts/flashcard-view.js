@@ -19,7 +19,6 @@ function FlashcardView()
 	{
 		this.initAnswerBoxes(this.FLASHCARD_TOP + 2.5 * TEXT_SIZE);
 	}
-	this.hideAnswerBoxes();
 }
 
 FlashcardView.prototype.displayQuestion = function(memoryWord)
