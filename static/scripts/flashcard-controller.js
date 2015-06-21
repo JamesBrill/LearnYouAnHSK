@@ -54,11 +54,21 @@ FlashcardController.prototype.performPhase = function()
 
 FlashcardController.prototype.markFlashcardAsEasy = function()
 {
+	var phase = this.flashcardPhases[this.flashcardPhaseIndex];
+	if (phase == "AwaitSpacebar")
+	{
+		this.flashcardPhaseIndex += 2;
+	}
 	this.memoryWordSession.markCurrentWordAsEasy();
 	this.nextPhase();
 }
 
 FlashcardController.prototype.markFlashcardAsHard = function()
 {
+	var phase = this.flashcardPhases[this.flashcardPhaseIndex];
+	if (phase == "AwaitSpacebar")
+	{
+		this.flashcardPhaseIndex += 2;
+	}
 	this.nextPhase();
 }

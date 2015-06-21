@@ -19,11 +19,20 @@ InteractionController.spacebarHandler = function(e)
 	{
 		flashcardController.nextPhase();
 	}
+	else
+	{
+		InteractionController.handleDifficultyKey(code);
+	}
 }
 
 InteractionController.difficultyKeyHandler = function(e)
 {
 	var code = e.keyCode || e.which;
+	InteractionController.handleDifficultyKey(code);
+}
+
+InteractionController.handleDifficultyKey = function(code)
+{
 	if (code == KeyCode.Q)
 	{
 		flashcardController.markFlashcardAsEasy();
@@ -31,5 +40,5 @@ InteractionController.difficultyKeyHandler = function(e)
 	else if (code == KeyCode.W)
 	{
 		flashcardController.markFlashcardAsHard();
-	}	
+	}
 }
