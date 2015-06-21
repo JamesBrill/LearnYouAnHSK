@@ -5,6 +5,7 @@ function FlashcardView()
 	this.height = $('#drawing').height();
 	this.draw = SVG('drawing').size("100%", "100%");
 	this.background = this.draw.rect("100%", "100%");
+	this.background.mouseover(function() { this.resetAnswerBoxes(); }.bind(this));
 	this.question;
 	this.answer;
 	this.FLASHCARD_TOP = 0.1 * this.height;
@@ -76,6 +77,10 @@ FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour, offset, cli
 	box.fill(colour);
 	box.radius(0.05 * this.answerBoxSize);
 	box.click(clickHandler);
+	box.mouseover(function()
+	{		
+		box.attr({ stroke: "white", "stroke-width": 0.03 * this.answerBoxSize });
+	}.bind(this));
 
  	var text = this.draw.text(function(add)
 	{
@@ -95,6 +100,14 @@ FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour, offset, cli
 	});	
 	text.click(clickHandler);	
 	return { box: box, text: text };
+}
+
+FlashcardView.prototype.resetAnswerBoxes = function()
+{
+	for (var i = 0; i < 3; i++)
+	{
+		this.answerBoxes[i].box.attr({ stroke: null });
+	}	
 }
 
 FlashcardView.prototype.showAnswerBoxes = function()
