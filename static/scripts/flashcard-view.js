@@ -49,12 +49,25 @@ FlashcardView.prototype.displayQuestion = function(memoryWord)
 
 FlashcardView.prototype.initAnswerBoxes = function(height)
 {
-	var easyBoxElements = this.drawAnswerBox(0.4 * this.width, height, "Too easy [Q]", "green");
-	var hardBoxElements = this.drawAnswerBox(0.6 * this.width, height, "Not easy [W]", "red");
-	this.answerBoxes = [ easyBoxElements, hardBoxElements ];
+	var easyBoxElements = this.drawAnswerBox(0.3 * this.width, 
+											 height, 
+											 ["Too easy [Q]"], 
+											 "green", 
+											 0.15 * this.answerBoxSize);
+	var showAnswerBoxElements = this.drawAnswerBox(0.5 * this.width, 
+												   height, 
+												   ["Show answer", "[Space]"], 
+												   "gray", 
+												   0.05 * this.answerBoxSize);
+	var hardBoxElements = this.drawAnswerBox(0.7 * this.width, 
+											 height, 
+											 ["Not easy [W]"], 
+											 "red", 
+											 0.15 * this.answerBoxSize);
+	this.answerBoxes = [ easyBoxElements, showAnswerBoxElements, hardBoxElements ];
 }
 
-FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour)
+FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour, offset)
 {
 	var box = this.draw.rect(this.answerBoxSize, 0.5 * this.answerBoxSize);
 	box.move(x - 0.5 * this.answerBoxSize, y);
@@ -63,10 +76,13 @@ FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour)
 
  	var text = this.draw.text(function(add)
 	{
-		add.tspan(text).newLine();
+		for (var i = 0; i < text.length; i++)
+		{
+			add.tspan(text[i]).newLine();
+		}
 	});
 	text.fill("white");
-	text.move(x, y + 0.15 * this.answerBoxSize);
+	text.move(x, y + offset);
 	text.font({
 		family: "Helvetica",
 		size: 0.15 * this.answerBoxSize,
@@ -78,18 +94,20 @@ FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour)
 
 FlashcardView.prototype.showAnswerBoxes = function()
 {
-	this.answerBoxes[0].box.show();
-	this.answerBoxes[0].text.show()
-	this.answerBoxes[1].box.show()
-	this.answerBoxes[1].text.show()
+	for (var i = 0; i < 3; i++)
+	{
+		this.answerBoxes[i].box.show();
+		this.answerBoxes[i].text.show();	
+	}
 }
 
 FlashcardView.prototype.hideAnswerBoxes = function()
 {
-	this.answerBoxes[0].box.hide();
-	this.answerBoxes[0].text.hide()
-	this.answerBoxes[1].box.hide()
-	this.answerBoxes[1].text.hide()
+	for (var i = 0; i < 3; i++)
+	{
+		this.answerBoxes[i].box.hide();
+		this.answerBoxes[i].text.hide();	
+	}
 }
 
 FlashcardView.prototype.displayAnswer = function(memoryWord)
