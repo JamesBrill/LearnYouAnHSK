@@ -1,39 +1,39 @@
 function CompleteSessionView() 
 {
 	this.sessionCompleteText;
-	this.answerBoxes;
-	this.answerBoxSize = 1.2 * TEXT_SIZE;
-	this.initAnswerBoxes();
+	this.sessionCompleteButtons;
+	this.sessionCompleteButtonSize = 1.2 * TEXT_SIZE;
+	this.initSessionCompleteButtons();
 }
 
-CompleteSessionView.prototype.initAnswerBoxes = function()
+CompleteSessionView.prototype.initSessionCompleteButtons = function()
 {
-	var repeatSessionBoxElements = this.drawAnswerBox(0.4 * canvas.width, 
+	var repeatSessionBoxElements = this.drawSessionCompleteButton(0.4 * canvas.width, 
 													  0.7 * canvas.height, 
 													  ["Repeat", "Session [R]"], 
 													  "blue", 
-													  0.05 * this.answerBoxSize,
+													  0.05 * this.sessionCompleteButtonSize,
 													  function() { controller.repeatSession(); });
-	var newSessionBoxElements = this.drawAnswerBox(0.6 * canvas.width, 
+	var newSessionBoxElements = this.drawSessionCompleteButton(0.6 * canvas.width, 
 												   0.7 * canvas.height, 
 												   ["New", "Session [N]"], 
 												   "blue", 
-												   0.05 * this.answerBoxSize,
+												   0.05 * this.sessionCompleteButtonSize,
 												   function() { controller.newSession(); });
-	this.answerBoxes = [ repeatSessionBoxElements, newSessionBoxElements ];
-	this.hideAnswerBoxes();
+	this.sessionCompleteButtons = [ repeatSessionBoxElements, newSessionBoxElements ];
+	this.hideSessionCompleteButtons();
 }
 
-CompleteSessionView.prototype.drawAnswerBox = function(x, y, text, colour, offset, clickHandler)
+CompleteSessionView.prototype.drawSessionCompleteButton = function(x, y, text, colour, offset, clickHandler)
 {
-	var box = canvas.draw.rect(this.answerBoxSize, 0.5 * this.answerBoxSize);
-	box.move(x - 0.5 * this.answerBoxSize, y);
+	var box = canvas.draw.rect(this.sessionCompleteButtonSize, 0.5 * this.sessionCompleteButtonSize);
+	box.move(x - 0.5 * this.sessionCompleteButtonSize, y);
 	box.fill(colour);
-	box.radius(0.05 * this.answerBoxSize);
+	box.radius(0.05 * this.sessionCompleteButtonSize);
 	box.click(clickHandler);
 	box.mouseover(function()
 	{		
-		box.attr({ stroke: "white", "stroke-width": 0.03 * this.answerBoxSize });
+		box.attr({ stroke: "white", "stroke-width": 0.03 * this.sessionCompleteButtonSize });
 	}.bind(this));
 	box.attr({ cursor: "pointer" });
 
@@ -48,7 +48,7 @@ CompleteSessionView.prototype.drawAnswerBox = function(x, y, text, colour, offse
 	text.move(x, y + offset);
 	text.font({
 		family: "Helvetica",
-		size: 0.15 * this.answerBoxSize,
+		size: 0.15 * this.sessionCompleteButtonSize,
 		anchor: "middle",
 		class: "disable_text_highlighting",
 		cursor: "pointer" 
@@ -57,36 +57,36 @@ CompleteSessionView.prototype.drawAnswerBox = function(x, y, text, colour, offse
 	return { box: box, text: text };
 }
 
-CompleteSessionView.prototype.resetAnswerBoxes = function()
+CompleteSessionView.prototype.resetSessionCompleteButtons = function()
 {
 	for (var i = 0; i < 2; i++)
 	{
-		this.answerBoxes[i].box.attr({ stroke: null });
+		this.sessionCompleteButtons[i].box.attr({ stroke: null });
 	}	
 }
 
-CompleteSessionView.prototype.showAnswerBoxes = function()
+CompleteSessionView.prototype.showSessionCompleteButtons = function()
 {
 	for (var i = 0; i < 2; i++)
 	{
-		this.answerBoxes[i].box.show();
-		this.answerBoxes[i].text.show();	
+		this.sessionCompleteButtons[i].box.show();
+		this.sessionCompleteButtons[i].text.show();	
 	}
 }
 
-CompleteSessionView.prototype.hideAnswerBoxes = function()
+CompleteSessionView.prototype.hideSessionCompleteButtons = function()
 {
 	for (var i = 0; i < 2; i++)
 	{
-		this.answerBoxes[i].box.hide();
-		this.answerBoxes[i].text.hide();	
+		this.sessionCompleteButtons[i].box.hide();
+		this.sessionCompleteButtons[i].text.hide();	
 	}
 }
 
 CompleteSessionView.prototype.displaySessionCompleteMenu = function()
 {
 	this.sessionCompleteText = this.displaySessionCompleteText();
-	this.showAnswerBoxes();
+	this.showSessionCompleteButtons();
 }
 
 CompleteSessionView.prototype.displaySessionCompleteText = function()
@@ -111,5 +111,5 @@ CompleteSessionView.prototype.displaySessionCompleteText = function()
 CompleteSessionView.prototype.clear = function()
 {
 	this.sessionCompleteText.clear();
-	this.hideAnswerBoxes();
+	this.hideSessionCompleteButtons();
 }

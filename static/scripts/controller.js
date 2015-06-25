@@ -45,7 +45,7 @@ Controller.prototype.processState = function()
 
 Controller.prototype.resetAnswerBoxes = function()
 {
-	completeSessionView.resetAnswerBoxes();
+	completeSessionView.resetSessionCompleteButtons();
 	flashcardView.resetAnswerBoxes();
 }
 
