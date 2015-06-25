@@ -11,7 +11,6 @@ MemoryWordSession.prototype.updateMemoryWords = function()
 {
 	if (this.hardWords.length == 0)
 	{
-		console.log("SESSION COMPLETE. WELL DONE!");
 		controller.nextState();
 		return "SessionComplete";
 	}

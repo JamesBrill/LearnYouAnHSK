@@ -26,7 +26,6 @@ Controller.prototype.processState = function()
 	switch (state)
 	{
 		case "ConfigForm":
-			console.log("A");
 			this.nextState();
 			break;
 		case "DelegateToFlashcardController":
@@ -34,7 +33,6 @@ Controller.prototype.processState = function()
 			flashcardController.performPhase();
 			break;
 		case "SessionComplete":
-			console.log("B");
 			flashcardView.clear();
 			flashcardController = null;
 			interactionController.beginAwaitingSessionCompleteKey();
