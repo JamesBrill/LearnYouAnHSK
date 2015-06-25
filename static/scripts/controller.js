@@ -7,7 +7,9 @@ function Controller()
 		"SessionComplete"
 	];
 	this.stateIndex = 0;
+	sessionView = new SessionView();
 	flashcardView = new FlashcardView();
+	canvas.background.mouseover(function() { this.resetAnswerBoxes(); }.bind(this));
 }
 
 Controller.prototype.nextState = function()
@@ -33,9 +35,16 @@ Controller.prototype.processState = function()
 		case "SessionComplete":
 			console.log("B");
 			flashcardView.clear();
-			this.nextState();
+			flashcardController = null;
+			sessionView.displaySessionCompleteMenu();
 			break;
 		default: 
 			alert("Invalid state.");
 	}
+}
+
+Controller.prototype.resetAnswerBoxes = function()
+{
+	sessionView.resetAnswerBoxes();
+	flashcardView.resetAnswerBoxes();
 }

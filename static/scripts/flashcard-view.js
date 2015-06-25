@@ -1,6 +1,5 @@
 function FlashcardView() 
 {
-	canvas.background.mouseover(function() { this.resetAnswerBoxes(); }.bind(this));
 	this.question;
 	this.answer;
 	this.FLASHCARD_TOP = 0.1 * canvas.height;
