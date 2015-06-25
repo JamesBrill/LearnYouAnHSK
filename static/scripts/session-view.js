@@ -107,3 +107,9 @@ SessionView.prototype.displaySessionCompleteText = function()
 	});	
 	return text;
 }
+
+SessionView.prototype.clear = function()
+{
+	this.sessionCompleteText.clear();
+	this.hideAnswerBoxes();
+}
