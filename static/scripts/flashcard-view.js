@@ -188,6 +188,12 @@ FlashcardView.prototype.drawEnglish = function(english, height)
 	return text;
 }
 
+FlashcardView.prototype.clear = function()
+{
+	this.clearFlashcard();
+	this.hideAnswerBoxes();
+}
+
 FlashcardView.prototype.clearFlashcard = function()
 {
 	if (this.question != undefined)
