@@ -45,6 +45,7 @@ FlashcardView.prototype.displayQuestion = function(memoryWord)
 			console.log("Invalid flashcard display mode.")
 	}
 	this.question = question;
+	this.showAnswerBoxes();
 }
 
 FlashcardView.prototype.initAnswerBoxes = function(height)
@@ -147,7 +148,6 @@ FlashcardView.prototype.displayAnswer = function(memoryWord)
 		default:
 			console.log("Invalid flashcard display mode.")
 	}
-	this.showAnswerBoxes();
 	this.answer = answer;
 }
 
