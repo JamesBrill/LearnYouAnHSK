@@ -37,6 +37,7 @@ Controller.prototype.processState = function()
 			console.log("B");
 			flashcardView.clear();
 			flashcardController = null;
+			interactionController.beginAwaitingSessionCompleteKey();
 			completeSessionView.displaySessionCompleteMenu();
 			break;
 		default: 

@@ -12,6 +12,13 @@ InteractionController.prototype.beginAwaitingDifficultyKey = function()
 	$(document).keypress(InteractionController.difficultyKeyHandler);
 }
 
+InteractionController.prototype.beginAwaitingSessionCompleteKey = function()
+{
+	$(document).off();
+	$(document).keypress(InteractionController.sessionCompleteKeyHandler);
+}
+
+
 InteractionController.spacebarHandler = function(e)
 {
 	var code = e.keyCode || e.which;
@@ -31,6 +38,12 @@ InteractionController.difficultyKeyHandler = function(e)
 	InteractionController.handleDifficultyKey(code);
 }
 
+InteractionController.sessionCompleteKeyHandler = function(e)
+{
+	var code = e.keyCode || e.which;
+	InteractionController.handleSessionCompleteKey(code);
+}
+
 InteractionController.handleDifficultyKey = function(code)
 {
 	if (code == KeyCode.Q)
@@ -40,5 +53,17 @@ InteractionController.handleDifficultyKey = function(code)
 	else if (code == KeyCode.W)
 	{
 		flashcardController.markFlashcardAsHard();
+	}
+}
+
+InteractionController.handleSessionCompleteKey = function(code)
+{
+	if (code == KeyCode.R)
+	{
+		controller.repeatSession();
+	}	
+	else if (code == KeyCode.N)
+	{
+		controller.newSession();
 	}
 }
