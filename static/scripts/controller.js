@@ -1,6 +1,6 @@
 function Controller() 
 {
-	this.flashcardController = new FlashcardController();
+	flashcardController = new FlashcardController();
 }
 
 Controller.prototype.performPhase = function()
