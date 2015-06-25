@@ -9,8 +9,7 @@ function FlashcardController()
 		"ClearFlashcard"
 	];
 	this.flashcardPhaseIndex = 0;
-	this.interactionController = new InteractionController();
-	this.flashcardView = new FlashcardView();
+	this.interactionController = new InteractionController();	
 	this.memoryWordSession = new MemoryWordSession();
 }
 
@@ -28,7 +27,7 @@ FlashcardController.prototype.performPhase = function()
 	{
 		case "DisplayQuestion":
 			var memoryWord = this.memoryWordSession.currentWord;
-			this.flashcardView.displayQuestion(memoryWord);
+			flashcardView.displayQuestion(memoryWord);
 			this.nextPhase();
 			break;
 		case "AwaitSpacebar":
@@ -36,16 +35,16 @@ FlashcardController.prototype.performPhase = function()
 			break;
 		case "DisplayAnswer":
 			var memoryWord = this.memoryWordSession.currentWord;
-			this.flashcardView.displayAnswer(memoryWord);
+			flashcardView.displayAnswer(memoryWord);
 			this.nextPhase();
 			break;
 		case "AwaitDifficultyKey":
 			this.interactionController.beginAwaitingDifficultyKey();
 			break;
 		case "ClearFlashcard":
-			this.flashcardView.clearFlashcard();
 			this.memoryWordSession.updateMemoryWords();
 			this.nextPhase();
+			flashcardView.clearFlashcard();
 			break;
 		default: 
 			alert("Invalid flashcard phase.");
