@@ -13,13 +13,13 @@ SessionView.prototype.initAnswerBoxes = function()
 													  ["Repeat", "Session [R]"], 
 													  "blue", 
 													  0.05 * this.answerBoxSize,
-													  function() { alert("REPEAT") });
+													  function() { controller.repeatSession(); });
 	var newSessionBoxElements = this.drawAnswerBox(0.6 * canvas.width, 
 												   0.7 * canvas.height, 
 												   ["New", "Session [N]"], 
 												   "blue", 
 												   0.05 * this.answerBoxSize,
-												   function() { alert("NEW") });
+												   function() { controller.newSession(); });
 	this.answerBoxes = [ repeatSessionBoxElements, newSessionBoxElements ];
 	this.hideAnswerBoxes();
 }
