@@ -9,6 +9,7 @@ function Controller()
 	this.stateIndex = 0;
 	completeSessionView = new CompleteSessionView();
 	flashcardView = new FlashcardView();
+	interactionController = new InteractionController();	
 	canvas.background.mouseover(function() { this.resetAnswerBoxes(); }.bind(this));
 }
 

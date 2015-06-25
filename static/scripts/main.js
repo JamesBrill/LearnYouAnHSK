@@ -2,6 +2,7 @@ var TEXT_SIZE = window.innerWidth / 10;
 var FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS_AND_PINYIN;
 var controller;
 var flashcardController;
+var interactionController;
 var flashcardView;
 var completeSessionView;
 var canvas;

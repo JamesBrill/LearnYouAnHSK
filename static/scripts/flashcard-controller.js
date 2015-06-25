@@ -9,7 +9,6 @@ function FlashcardController()
 		"ClearFlashcard"
 	];
 	this.flashcardPhaseIndex = 0;
-	this.interactionController = new InteractionController();	
 	this.memoryWordSession = new MemoryWordSession();
 }
 
@@ -31,7 +30,7 @@ FlashcardController.prototype.performPhase = function()
 			this.nextPhase();
 			break;
 		case "AwaitSpacebar":
-			this.interactionController.beginAwaitingSpacebar();
+			interactionController.beginAwaitingSpacebar();
 			break;
 		case "DisplayAnswer":
 			var memoryWord = this.memoryWordSession.currentWord;
@@ -39,7 +38,7 @@ FlashcardController.prototype.performPhase = function()
 			this.nextPhase();
 			break;
 		case "AwaitDifficultyKey":
-			this.interactionController.beginAwaitingDifficultyKey();
+			interactionController.beginAwaitingDifficultyKey();
 			break;
 		case "ClearFlashcard":
 			flashcardView.clearFlashcard();
