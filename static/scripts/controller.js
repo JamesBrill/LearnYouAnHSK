@@ -48,3 +48,17 @@ Controller.prototype.resetAnswerBoxes = function()
 	sessionView.resetAnswerBoxes();
 	flashcardView.resetAnswerBoxes();
 }
+
+Controller.prototype.repeatSession = function()
+{
+	sessionView.clear();
+	this.stateIndex = 1;
+	this.processState();
+}
+
+Controller.prototype.newSession = function()
+{
+	sessionView.clear();	
+	this.stateIndex = 1;
+	this.processState();
+}
