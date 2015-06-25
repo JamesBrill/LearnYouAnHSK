@@ -42,9 +42,11 @@ FlashcardController.prototype.performPhase = function()
 			this.interactionController.beginAwaitingDifficultyKey();
 			break;
 		case "ClearFlashcard":
-			this.memoryWordSession.updateMemoryWords();
-			this.nextPhase();
 			flashcardView.clearFlashcard();
+			if (this.memoryWordSession.updateMemoryWords() != "SessionComplete")
+			{
+				this.nextPhase();
+			}
 			break;
 		default: 
 			alert("Invalid flashcard phase.");
