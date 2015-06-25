@@ -105,4 +105,5 @@ SessionView.prototype.displaySessionCompleteText = function()
 		class: "disable_text_highlighting",
 		cursor: "pointer" 
 	});	
+	return text;
 }
