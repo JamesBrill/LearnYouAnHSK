@@ -1,6 +1,6 @@
 function BeginSessionView() 
 {
-	this.radioButtonSize = 100;
+	this.radioButtonSize = TEXT_SIZE;
 	this.radioButtonSetSize = 5 * this.radioButtonSize;
 	this.radioButtons = canvas.drawRadioButtons(0.5 * canvas.width - 0.4 * this.radioButtonSetSize, 
 							100, 
