@@ -6,7 +6,7 @@ function BeginSessionView()
 							0.1 * canvas.height, 
 							"blue", 
 							[["HSK 1"], ["HSK 2"]], 
-							[function(){controller.nextState()}, function(){controller.nextState()}], 
+							[function() { controller.setHSKWordList(1); controller.nextState(); }, function() { controller.setHSKWordList(2); controller.nextState(); }], 
 							this.radioButtonSize);
 }
 

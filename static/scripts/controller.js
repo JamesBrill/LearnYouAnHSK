@@ -7,6 +7,7 @@ function Controller()
 		"SessionComplete"
 	];
 	this.stateIndex = 0;
+	this.hskVersion = 1;
 	beginSessionView = new BeginSessionView();
 	flashcardView = new FlashcardView();
 	completeSessionView = new CompleteSessionView();
@@ -29,7 +30,7 @@ Controller.prototype.processState = function()
 		case "ConfigForm":
 			break;
 		case "DelegateToFlashcardController":
-			flashcardController = new FlashcardController();
+			flashcardController = new FlashcardController(this.hskVersion);
 			flashcardController.performPhase();
 			break;
 		case "SessionComplete":
@@ -62,4 +63,9 @@ Controller.prototype.newSession = function()
 	completeSessionView.clear();	
 	this.stateIndex = 1;
 	this.processState();
+}
+
+Controller.prototype.setHSKWordList = function(wordListVersion)
+{
+	this.hskVersion = wordListVersion;
 }
