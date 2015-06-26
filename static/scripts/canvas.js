@@ -20,7 +20,7 @@ Canvas.prototype.drawRadioButtons = function(leftX, topY, colour, texts, clickHa
 		}.bind(this, i);
 		var radioButton = this.drawRadioButton(x, topY, colour, 0.15 * size, texts[i], clickHandler, size);
 		radioButtons.buttons.push(radioButton);
-		x += 200; // TODO: make proportional
+		x += 2 * size; 
 	}
 	return radioButtons;
 }
