@@ -3,6 +3,7 @@ var FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS_AND_PINYIN;
 var controller;
 var flashcardController;
 var interactionController;
+var beginSessionView;
 var flashcardView;
 var completeSessionView;
 var canvas;
