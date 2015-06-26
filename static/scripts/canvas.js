@@ -28,7 +28,7 @@ Canvas.prototype.drawRadioButtons = function(leftX, topY, colour, texts, clickHa
 Canvas.prototype.drawRadioButton = function(x, y, colour, offset, text, clickHandler, size)
 {
 	var box = this.draw.rect(size, 0.5 * size);
-	box.move(x - 0.5 * size, y);
+	box.move(x, y);
 	box.fill(colour);
 	box.radius(0.05 * size);
 	box.click(clickHandler);
@@ -50,7 +50,7 @@ Canvas.prototype.drawRadioButton = function(x, y, colour, offset, text, clickHan
 		}
 	});
 	text.fill("white");
-	text.move(x, y + offset);
+	text.move(x + 0.5 * size, y + offset);
 	text.font({
 		family: "Helvetica",
 		size: 0.15 * size,
