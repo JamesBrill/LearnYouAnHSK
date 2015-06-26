@@ -7,8 +7,9 @@ function Controller()
 		"SessionComplete"
 	];
 	this.stateIndex = 0;
-	completeSessionView = new CompleteSessionView();
+	beginSessionView = new BeginSessionView();
 	flashcardView = new FlashcardView();
+	completeSessionView = new CompleteSessionView();
 	interactionController = new InteractionController();	
 	canvas.background.mouseover(function() { this.resetAnswerBoxes(); }.bind(this));
 }
@@ -26,7 +27,6 @@ Controller.prototype.processState = function()
 	switch (state)
 	{
 		case "ConfigForm":
-			this.nextState();
 			break;
 		case "DelegateToFlashcardController":
 			flashcardController = new FlashcardController();
@@ -47,6 +47,7 @@ Controller.prototype.resetAnswerBoxes = function()
 {
 	completeSessionView.resetSessionCompleteButtons();
 	flashcardView.resetAnswerBoxes();
+	beginSessionView.resetRadioButtons();
 }
 
 Controller.prototype.repeatSession = function()
