@@ -18,14 +18,14 @@ Canvas.prototype.drawRadioButtons = function(leftX, topY, colour, texts, clickHa
 			radioButtons.select(i);
 			clickHandlers[i]();
 		}.bind(this, i);
-		var radioButton = this.drawRadioButton(x, topY, colour, 0.15 * size, texts[i], clickHandler, size);
+		var radioButton = this.drawRadioButton(x, topY, colour, texts[i], clickHandler, size);
 		radioButtons.buttons.push(radioButton);
 		x += 2 * size; 
 	}
 	return radioButtons;
 }
 
-Canvas.prototype.drawRadioButton = function(x, y, colour, offset, text, clickHandler, size)
+Canvas.prototype.drawRadioButton = function(x, y, colour, text, clickHandler, size)
 {
 	var box = this.draw.rect(size, 0.5 * size);
 	box.move(x, y);
@@ -42,6 +42,20 @@ Canvas.prototype.drawRadioButton = function(x, y, colour, offset, text, clickHan
 	}.bind(this));
 	box.attr({ cursor: "pointer" });
 
+	var textOffset, textSize;	
+	switch (text.length)
+	{
+		case 1:
+			textOffset = 0.15 * size;
+			textSize = 0.15 * size;
+			break;
+		case 2:
+		default:
+			textOffset = 0.05 * size;
+			textSize = 0.15 * size;
+			break;
+	}
+
  	var text = this.draw.text(function(add)
 	{
 		for (var i = 0; i < text.length; i++)
@@ -50,10 +64,10 @@ Canvas.prototype.drawRadioButton = function(x, y, colour, offset, text, clickHan
 		}
 	});
 	text.fill("white");
-	text.move(x + 0.5 * size, y + offset);
+	text.move(x + 0.5 * size, y + textOffset);
 	text.font({
 		family: "Helvetica",
-		size: 0.15 * size,
+		size: textSize,
 		anchor: "middle",
 		class: "disable_text_highlighting",
 		cursor: "pointer" 
