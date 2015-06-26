@@ -21,4 +21,5 @@ function BeginSessionView()
 BeginSessionView.prototype.resetRadioButtons = function()
 {
 	this.hskRadioButtons.reset();
+	this.testTypeRadioButtons.reset();
 }
