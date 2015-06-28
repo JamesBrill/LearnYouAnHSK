@@ -119,39 +119,13 @@ FlashcardView.prototype.displayAnswer = function(memoryWord)
 
 FlashcardView.prototype.drawChinese = function(chinese, height)
 {
-	var text = canvas.draw.text(function(add)
-	{
-		add.tspan(chinese).newLine();
-	});
-	text.fill("white");
-	text.move(0.5 * canvas.width, height);
-	text.font({
-		family: "SimHei",
-		size: TEXT_SIZE,			
-		anchor: "middle",
-		class: "disable_text_highlighting",
-		cursor: "default"  
-	});	
-	return text;
+	return canvas.drawText(0.5 * canvas.width, height, chinese, "SimHei", TEXT_SIZE);
 }
 
 FlashcardView.prototype.drawEnglish = function(english, height)
 {
 	var englishSize = (english.length > 15) ? 0.5 * TEXT_SIZE : 0.75 * TEXT_SIZE;
-	var text = canvas.draw.text(function(add)
-	{
-		add.tspan(english).newLine();
-	});
-	text.fill("white");
-	text.move(0.5 * canvas.width, height);
-	text.font({
-		family: "Helvetica",
-		size: englishSize,
-		anchor: "middle",
-		class: "disable_text_highlighting",
-		cursor: "default"  
-	});	
-	return text;
+	return canvas.drawText(0.5 * canvas.width, height, english, "Helvetica", englishSize);
 }
 
 FlashcardView.prototype.clear = function()

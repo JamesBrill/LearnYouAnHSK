@@ -109,3 +109,21 @@ Canvas.prototype.drawButton = function(x, y, text, colour, offset, clickHandler,
 	text.click(clickHandler);	
 	return { box: box, text: text };
 }
+
+Canvas.prototype.drawText = function(x, y, text, font, fontSize)
+{
+	var text = canvas.draw.text(function(add)
+	{
+		add.tspan(text).newLine();
+	});
+	text.fill("white");
+	text.move(x, y);
+	text.font({
+		family: font,
+		size: fontSize,
+		anchor: "middle",
+		class: "disable_text_highlighting",
+		cursor: "default"  
+	});	
+	return text;
+}
