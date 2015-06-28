@@ -10,13 +10,13 @@ CompleteSessionView.prototype.initSessionCompleteButtons = function()
 {
 	var repeatSessionBoxElements = this.drawSessionCompleteButton(0.4 * canvas.width, 
 													  0.7 * canvas.height, 
-													  ["Repeat", "Session [R]"], 
+													  ["Repeat", "session [R]"], 
 													  "blue", 
 													  0.05 * this.sessionCompleteButtonSize,
 													  function() { controller.repeatSession(); });
 	var newSessionBoxElements = this.drawSessionCompleteButton(0.6 * canvas.width, 
 												   0.7 * canvas.height, 
-												   ["New", "Session [N]"], 
+												   ["New", "session [N]"], 
 												   "blue", 
 												   0.05 * this.sessionCompleteButtonSize,
 												   function() { controller.newSession(); });
@@ -94,7 +94,7 @@ CompleteSessionView.prototype.displaySessionCompleteText = function()
  	var text = canvas.draw.text(function(add)
 	{
 		add.tspan("Session").newLine(),
-		add.tspan("Complete!").newLine()
+		add.tspan("complete!").newLine()
 	});
 	text.fill("white");
 	text.move(0.5 * canvas.width, 0.1 * canvas.height);
