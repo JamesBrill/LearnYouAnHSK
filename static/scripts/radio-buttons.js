@@ -31,3 +31,12 @@ RadioButtons.prototype.reset = function()
 		}
 	}
 }
+
+RadioButtons.prototype.hide = function()
+{
+	for (var i = 0; i < this.buttons.length; i++) 
+	{
+		this.buttons[i].box.hide();
+		this.buttons[i].text.hide();
+	}
+}

@@ -30,6 +30,7 @@ Controller.prototype.processState = function()
 		case "ConfigForm":
 			break;
 		case "DelegateToFlashcardController":
+			beginSessionView.clear();
 			flashcardController = new FlashcardController(this.hskVersion);
 			flashcardController.performPhase();
 			break;

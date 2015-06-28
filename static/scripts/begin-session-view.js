@@ -41,3 +41,11 @@ BeginSessionView.prototype.drawBeginSessionButton = function()
 							 function() { controller.nextState(); },
 							 this.radioButtonSize);
 }
+
+BeginSessionView.prototype.clear = function()
+{
+	this.hskRadioButtons.hide();
+	this.testTypeRadioButtons.hide();
+	this.beginSessionButton.box.hide();
+	this.beginSessionButton.text.hide();
+}
