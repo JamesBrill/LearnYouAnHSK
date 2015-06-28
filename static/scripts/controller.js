@@ -55,7 +55,9 @@ Controller.prototype.resetAnswerBoxes = function()
 
 Controller.prototype.repeatSession = function()
 {
-	this.nextState();
+	completeSessionView.clear();
+	this.stateIndex = 1;
+	this.processState();
 }
 
 Controller.prototype.newSession = function()
