@@ -1,6 +1,6 @@
 function CompleteSessionView() 
 {
-	this.sessionCompleteText;
+	this.sessionCompleteText = this.displaySessionCompleteText();;
 	this.sessionCompleteButtons;
 	this.sessionCompleteButtonSize = 1.2 * TEXT_SIZE;
 	this.initSessionCompleteButtons();
@@ -85,7 +85,7 @@ CompleteSessionView.prototype.hideSessionCompleteButtons = function()
 
 CompleteSessionView.prototype.displaySessionCompleteMenu = function()
 {
-	this.sessionCompleteText = this.displaySessionCompleteText();
+	this.sessionCompleteText.show();
 	this.showSessionCompleteButtons();
 }
 
@@ -110,6 +110,6 @@ CompleteSessionView.prototype.displaySessionCompleteText = function()
 
 CompleteSessionView.prototype.clear = function()
 {
-	this.sessionCompleteText.clear();
+	this.sessionCompleteText.hide();
 	this.hideSessionCompleteButtons();
 }
