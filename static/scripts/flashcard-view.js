@@ -68,35 +68,7 @@ FlashcardView.prototype.initAnswerBoxes = function(height)
 
 FlashcardView.prototype.drawAnswerBox = function(x, y, text, colour, offset, clickHandler)
 {
-	var box = canvas.draw.rect(this.answerBoxSize, 0.5 * this.answerBoxSize);
-	box.move(x - 0.5 * this.answerBoxSize, y);
-	box.fill(colour);
-	box.radius(0.05 * this.answerBoxSize);
-	box.click(clickHandler);
-	box.mouseover(function()
-	{		
-		box.attr({ stroke: "white", "stroke-width": 0.03 * this.answerBoxSize });
-	}.bind(this));
-	box.attr({ cursor: "pointer" });
-
- 	var text = canvas.draw.text(function(add)
-	{
-		for (var i = 0; i < text.length; i++)
-		{
-			add.tspan(text[i]).newLine();
-		}
-	});
-	text.fill("white");
-	text.move(x, y + offset);
-	text.font({
-		family: "Helvetica",
-		size: 0.15 * this.answerBoxSize,
-		anchor: "middle",
-		class: "disable_text_highlighting",
-		cursor: "pointer" 
-	});	
-	text.click(clickHandler);	
-	return { box: box, text: text };
+	return canvas.drawButton(x, y, text, colour, offset, clickHandler, this.answerBoxSize);
 }
 
 FlashcardView.prototype.resetAnswerBoxes = function()

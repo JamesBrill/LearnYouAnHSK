@@ -75,3 +75,36 @@ Canvas.prototype.drawRadioButton = function(x, y, colour, text, clickHandler, si
 	text.click(clickHandler);	
 	return { box: box, text: text };
 }
+
+Canvas.prototype.drawButton = function(x, y, text, colour, offset, clickHandler, size)
+{
+	var box = canvas.draw.rect(size, 0.5 * size);
+	box.move(x - 0.5 * size, y);
+	box.fill(colour);
+	box.radius(0.05 * size);
+	box.click(clickHandler);
+	box.mouseover(function()
+	{		
+		box.attr({ stroke: "white", "stroke-width": 0.03 * size });
+	}.bind(this));
+	box.attr({ cursor: "pointer" });
+
+ 	var text = canvas.draw.text(function(add)
+	{
+		for (var i = 0; i < text.length; i++)
+		{
+			add.tspan(text[i]).newLine();
+		}
+	});
+	text.fill("white");
+	text.move(x, y + offset);
+	text.font({
+		family: "Helvetica",
+		size: 0.15 * size,
+		anchor: "middle",
+		class: "disable_text_highlighting",
+		cursor: "pointer" 
+	});	
+	text.click(clickHandler);	
+	return { box: box, text: text };
+}
