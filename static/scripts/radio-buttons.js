@@ -32,6 +32,15 @@ RadioButtons.prototype.reset = function()
 	}
 }
 
+RadioButtons.prototype.show = function()
+{
+	for (var i = 0; i < this.buttons.length; i++) 
+	{
+		this.buttons[i].box.show();
+		this.buttons[i].text.show();
+	}
+}
+
 RadioButtons.prototype.hide = function()
 {
 	for (var i = 0; i < this.buttons.length; i++) 
