@@ -48,7 +48,7 @@ Controller.prototype.resetAnswerBoxes = function()
 {
 	completeSessionView.resetSessionCompleteButtons();
 	flashcardView.resetAnswerBoxes();
-	beginSessionView.resetRadioButtons();
+	beginSessionView.resetButtons();
 }
 
 Controller.prototype.repeatSession = function()
