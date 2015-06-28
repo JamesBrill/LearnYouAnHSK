@@ -14,7 +14,12 @@ function BeginSessionView()
 							0.1 * canvas.height + TEXT_SIZE, 
 							"green", 
 							[["Characters +", "Pinyin"], ["Characters"], ["Pinyin"], ["English", "Translation"]], 
-							[function() {  }, function() {  }, function() {  }, function() {  }], 
+							[
+							function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS_AND_PINYIN; }, 
+							function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS; }, 
+							function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.PINYIN; }, 
+							function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.ENGLISH; }
+							], 
 							this.radioButtonSize);
 }
 
