@@ -35,7 +35,7 @@ BeginSessionView.prototype.drawBeginSessionButton = function()
 {
 	return canvas.drawButton(0.5 * canvas.width,
 							 0.1 * canvas.height + 2 * this.radioButtonSize, 
-							 ["Start session"],
+							 ["Begin session"],
 							 "green",
 							 0.15 * this.radioButtonSize,
 							 function() { controller.nextState(); },
