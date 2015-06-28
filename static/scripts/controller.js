@@ -27,7 +27,9 @@ Controller.prototype.processState = function()
 	var state = this.states[this.stateIndex];
 	switch (state)
 	{
-		case "ConfigForm":
+		case "ConfigForm":			
+			completeSessionView.clear();
+			beginSessionView.displayBeginSessionMenu();
 			break;
 		case "DelegateToFlashcardController":
 			beginSessionView.clear();
@@ -54,16 +56,12 @@ Controller.prototype.resetAnswerBoxes = function()
 
 Controller.prototype.repeatSession = function()
 {
-	completeSessionView.clear();
-	this.stateIndex = 1;
-	this.processState();
+	this.nextState();
 }
 
 Controller.prototype.newSession = function()
-{
-	completeSessionView.clear();	
-	this.stateIndex = 1;
-	this.processState();
+{	
+	this.nextState();
 }
 
 Controller.prototype.setHSKWordList = function(wordListVersion)
