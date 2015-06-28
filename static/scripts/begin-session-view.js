@@ -22,6 +22,15 @@ function BeginSessionView()
 							], 
 							this.radioButtonSize);
 	this.beginSessionButton = this.drawBeginSessionButton();
+	this.clear();
+}
+
+BeginSessionView.prototype.displayBeginSessionMenu = function()
+{
+	this.hskRadioButtons.show();
+	this.testTypeRadioButtons.show();
+	this.beginSessionButton.box.show();
+	this.beginSessionButton.text.show();
 }
 
 BeginSessionView.prototype.resetButtons = function()
