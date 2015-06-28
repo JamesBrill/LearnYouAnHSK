@@ -3,7 +3,6 @@ function FlashcardView()
 	this.question;
 	this.answer;
 	this.FLASHCARD_TOP = 0.1 * canvas.height;
-	this.englishSize = 0.75 * TEXT_SIZE;
 	this.answerBoxes;
 	this.answerBoxSize = 1.2 * TEXT_SIZE;
 	if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.CHARACTERS_AND_PINYIN)
@@ -138,7 +137,7 @@ FlashcardView.prototype.drawChinese = function(chinese, height)
 
 FlashcardView.prototype.drawEnglish = function(english, height)
 {
-	this.englishSize = (english.length > 15) ? 0.5 * TEXT_SIZE : 0.75 * TEXT_SIZE;
+	var englishSize = (english.length > 15) ? 0.5 * TEXT_SIZE : 0.75 * TEXT_SIZE;
 	var text = canvas.draw.text(function(add)
 	{
 		add.tspan(english).newLine();
@@ -147,7 +146,7 @@ FlashcardView.prototype.drawEnglish = function(english, height)
 	text.move(0.5 * canvas.width, height);
 	text.font({
 		family: "Helvetica",
-		size: this.englishSize,
+		size: englishSize,
 		anchor: "middle",
 		class: "disable_text_highlighting",
 		cursor: "default"  
