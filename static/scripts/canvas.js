@@ -22,6 +22,7 @@ Canvas.prototype.drawRadioButtons = function(leftX, topY, colour, texts, clickHa
 		radioButtons.buttons.push(radioButton);
 		x += 2 * size; 
 	}
+	radioButtons.select(0);
 	return radioButtons;
 }
 
