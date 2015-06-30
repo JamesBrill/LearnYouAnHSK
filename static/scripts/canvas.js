@@ -127,3 +127,11 @@ Canvas.prototype.drawText = function(x, y, text, font, fontSize)
 	});	
 	return text;
 }
+
+Canvas.prototype.drawTextUnderline = function(x, y, length, colour, stroke)
+{
+	var line = this.draw.rect(length, stroke);
+	line.move(x, y);
+	line.fill(colour);
+	return line;
+}
