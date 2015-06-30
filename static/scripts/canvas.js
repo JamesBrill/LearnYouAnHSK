@@ -79,7 +79,7 @@ Canvas.prototype.drawRadioButton = function(x, y, colour, text, clickHandler, si
 
 Canvas.prototype.drawButton = function(x, y, text, colour, offset, clickHandler, size)
 {
-	var box = canvas.draw.rect(size, 0.5 * size);
+	var box = this.draw.rect(size, 0.5 * size);
 	box.move(x - 0.5 * size, y);
 	box.fill(colour);
 	box.radius(0.05 * size);
@@ -90,7 +90,7 @@ Canvas.prototype.drawButton = function(x, y, text, colour, offset, clickHandler,
 	}.bind(this));
 	box.attr({ cursor: "pointer" });
 
- 	var text = canvas.draw.text(function(add)
+ 	var text = this.draw.text(function(add)
 	{
 		for (var i = 0; i < text.length; i++)
 		{
@@ -112,7 +112,7 @@ Canvas.prototype.drawButton = function(x, y, text, colour, offset, clickHandler,
 
 Canvas.prototype.drawText = function(x, y, text, font, fontSize)
 {
-	var text = canvas.draw.text(function(add)
+	var text = this.draw.text(function(add)
 	{
 		add.tspan(text).newLine();
 	});
