@@ -32,6 +32,7 @@ Controller.prototype.processState = function()
 			break;
 		case "DelegateToFlashcardController":
 			beginSessionView.clear();
+			beginSessionView.showCreateNewSessionButton();
 			flashcardController = new FlashcardController();
 			flashcardController.performPhase();
 			break;
@@ -64,6 +65,7 @@ Controller.prototype.newSession = function()
 {	
 	completeSessionView.clear();
 	beginSessionView.clear();
+	beginSessionView.hideCreateNewSessionButton();
 	flashcardView.clear();
 	this.stateIndex = 0;
 	this.processState();

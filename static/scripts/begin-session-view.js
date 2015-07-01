@@ -48,6 +48,7 @@ function BeginSessionView()
 														this.radioButtonSize);
 	this.beginSessionButton = this.drawBeginSessionButton();
 	this.clear();
+	this.hideCreateNewSessionButton();
 }
 
 BeginSessionView.prototype.displayBeginSessionMenu = function()
@@ -102,4 +103,16 @@ BeginSessionView.prototype.clear = function()
 	this.wordListTextUnderline.hide();
 	this.testTypeText.hide();
 	this.testTypeTextUnderline.hide();
+}
+
+BeginSessionView.prototype.showCreateNewSessionButton = function()
+{
+	this.createNewSessionButton.box.show();
+	this.createNewSessionButton.text.show();
+}
+
+BeginSessionView.prototype.hideCreateNewSessionButton = function()
+{
+	this.createNewSessionButton.box.hide();
+	this.createNewSessionButton.text.hide();
 }
