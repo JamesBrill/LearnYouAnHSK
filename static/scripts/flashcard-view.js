@@ -3,6 +3,8 @@ function FlashcardView()
 	this.question;
 	this.answer;
 	this.FLASHCARD_TOP = 0.1 * canvas.height;
+	this.discardedCounter = canvas.drawText(0.1 * canvas.width, 0.4 * canvas.height, "Discarded: 0", "Helvetica", 0.25 * TEXT_SIZE);
+	this.remainingCounter = canvas.drawText(0.1 * canvas.width, 0.5 * canvas.height, "Remaining: 0", "Helvetica", 0.25 * TEXT_SIZE);
 	this.answerBoxes;
 	this.answerBoxSize = 1.2 * TEXT_SIZE;
 	if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.CHARACTERS_AND_PINYIN)
@@ -14,6 +16,7 @@ function FlashcardView()
 		this.initAnswerBoxes(this.FLASHCARD_TOP + 2.5 * TEXT_SIZE);
 	}
 	this.hideAnswerBoxes();
+	this.hideCounters();
 }
 
 FlashcardView.prototype.displayQuestion = function(memoryWord)
@@ -96,6 +99,24 @@ FlashcardView.prototype.hideAnswerBoxes = function()
 	}
 }
 
+FlashcardView.prototype.showCounters = function()
+{
+	this.discardedCounter.show();
+	this.remainingCounter.show();
+}
+
+FlashcardView.prototype.hideCounters = function()
+{
+	this.discardedCounter.hide();
+	this.remainingCounter.hide();
+}
+
+FlashcardView.prototype.setCounters = function(discardedCards, remainingCards)
+{
+	this.discardedCounter.text("Discarded: " + discardedCards);
+	this.remainingCounter.text("Remaining: " + remainingCards);
+}
+
 FlashcardView.prototype.displayAnswer = function(memoryWord)
 {
 	var answer;
@@ -132,6 +153,7 @@ FlashcardView.prototype.clear = function()
 {
 	this.clearFlashcard();
 	this.hideAnswerBoxes();
+	this.hideCounters();
 }
 
 FlashcardView.prototype.clearFlashcard = function()

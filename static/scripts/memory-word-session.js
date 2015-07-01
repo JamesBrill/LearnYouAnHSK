@@ -44,3 +44,13 @@ MemoryWordSession.prototype.buildWordList = function()
 	}
 	return wordList;
 }
+
+MemoryWordSession.prototype.numberOfDiscardedCards = function()
+{
+	return this.easyWords.length;
+}
+
+MemoryWordSession.prototype.numberOfRemainingCards = function()
+{
+	return this.hardWords.length;
+}

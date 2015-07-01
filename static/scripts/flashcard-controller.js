@@ -10,6 +10,9 @@ function FlashcardController()
 	];
 	this.flashcardPhaseIndex = 0;
 	this.memoryWordSession = new MemoryWordSession();
+	var remainingCards = this.memoryWordSession.numberOfRemainingCards();	
+	flashcardView.setCounters(0, remainingCards);
+	flashcardView.showCounters();
 }
 
 FlashcardController.prototype.nextPhase = function()
@@ -60,6 +63,9 @@ FlashcardController.prototype.markFlashcardAsEasy = function()
 		this.flashcardPhaseIndex += 2;
 	}
 	this.memoryWordSession.markCurrentWordAsEasy();
+	var discardedCards = this.memoryWordSession.numberOfDiscardedCards();
+	var remainingCards = this.memoryWordSession.numberOfRemainingCards();
+	flashcardView.setCounters(discardedCards, remainingCards);
 	this.nextPhase();
 }
 
