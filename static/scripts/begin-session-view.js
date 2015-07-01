@@ -4,6 +4,8 @@ function BeginSessionView()
 	this.underlineThickness = this.textSize / 20;
 	this.radioButtonSize = TEXT_SIZE;
 	this.topY = 0.1 * canvas.height;
+
+	this.createNewSessionButton = this.drawCreateNewSessionButton();
 	this.hskRadioButtonSetSize = 3 * this.radioButtonSize;
 	this.wordListText = canvas.drawText(0.5 * canvas.width, this.topY, "Word lists", "Helvetica", this.textSize);
 	this.wordListTextUnderline = canvas.drawTextUnderline(0.5 * (canvas.width - 1.1 * this.hskRadioButtonSetSize), 
@@ -64,7 +66,19 @@ BeginSessionView.prototype.resetButtons = function()
 {
 	this.hskRadioButtons.reset();
 	this.testTypeRadioButtons.reset();
+	this.createNewSessionButton.box.attr({ stroke: null });
 	this.beginSessionButton.box.attr({ stroke: null });
+}
+
+BeginSessionView.prototype.drawCreateNewSessionButton = function()
+{
+	return canvas.drawButton(0.06 * canvas.width,
+							 0.02 * canvas.height, 
+							 ["Create", "new session"],
+							 "green",
+							 0.05 * this.radioButtonSize,
+							 function() { controller.newSession(); },
+							 this.radioButtonSize);	
 }
 
 BeginSessionView.prototype.drawBeginSessionButton = function()

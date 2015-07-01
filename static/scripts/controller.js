@@ -62,5 +62,9 @@ Controller.prototype.repeatSession = function()
 
 Controller.prototype.newSession = function()
 {	
-	this.nextState();
+	completeSessionView.clear();
+	beginSessionView.clear();
+	flashcardView.clear();
+	this.stateIndex = 0;
+	this.processState();
 }
