@@ -2,6 +2,7 @@ function RadioButtons(strokeSize)
 {
 	this.buttons = [];
 	this.strokeSize = strokeSize;
+	this.buttonsSelected = 0;
 }
 
 RadioButtons.prototype.select = function(index)
@@ -10,7 +11,7 @@ RadioButtons.prototype.select = function(index)
 	{
 		if (i == index)
 		{
-			this.buttons[i].box.attr({ stroke: "yellow", "stroke-width": this.strokeSize });			
+			this.buttons[i].box.attr({ stroke: "yellow", "stroke-width": this.strokeSize });
 		}
 		else
 		{
@@ -19,17 +20,21 @@ RadioButtons.prototype.select = function(index)
 	}
 }
 
-RadioButtons.prototype.multiselect = function(index)
+RadioButtons.prototype.multiselect = function(index, clickHandler)
 {
 	var stroke = this.buttons[index].box.attr("stroke");
 	if (stroke != "yellow")
 	{
 		this.buttons[index].box.attr({ stroke: "yellow", "stroke-width": this.strokeSize });
+		this.buttonsSelected++;
+		clickHandler();
 	}
-	else
+	else if (this.buttonsSelected > 1)
 	{
 		this.buttons[index].box.attr({ stroke: null });
-	}	
+		this.buttonsSelected--;
+		clickHandler();
+	}
 }
 
 RadioButtons.prototype.reset = function()

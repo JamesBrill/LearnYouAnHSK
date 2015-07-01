@@ -17,19 +17,20 @@ Canvas.prototype.drawRadioButtons = function(multiselect, leftX, topY, colour, t
 		{
 			if (multiselect)
 			{
-				radioButtons.multiselect(i);
+				radioButtons.multiselect(i, clickHandlers[i]);
 			}
 			else
 			{
 				radioButtons.select(i);
+				clickHandlers[i]();
 			}
-			clickHandlers[i]();
 		}.bind(this, i);
 		var radioButton = this.drawRadioButton(x, topY, colour, texts[i], clickHandler, size);
 		radioButtons.buttons.push(radioButton);
 		x += 2 * size; 
 	}
 	radioButtons.select(0);
+	radioButtons.buttonsSelected = 1;
 	return radioButtons;
 }
 
