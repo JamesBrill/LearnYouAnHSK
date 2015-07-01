@@ -3,7 +3,7 @@ function MemoryWordSession()
 	this.currentWord;
 	this.currentDifficulty;
 	this.easyWords = [];
-	this.hardWords = MemoryWords.slice();
+	this.hardWords = (HSK_WORDLIST == 1) ? HSK1MemoryWords.slice() : HSK2MemoryWords.slice();
 	this.updateMemoryWords();
 }
 
