@@ -1,6 +1,6 @@
 var TEXT_SIZE = window.innerWidth / 10;
 var FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS_AND_PINYIN;
-var HSK_WORDLIST = 1;
+var hskWordList = new WordList(1);
 var controller;
 var flashcardController;
 var interactionController;

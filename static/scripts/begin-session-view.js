@@ -11,12 +11,16 @@ function BeginSessionView()
 														  1.1 * this.hskRadioButtonSetSize, 
 														  "white", 
 														  this.underlineThickness);
-	this.hskRadioButtons = canvas.drawRadioButtons(0.5 * (canvas.width - this.hskRadioButtonSetSize), 
-							this.topY + 2 * this.textSize, 
-							"blue", 
-							[["HSK 1"], ["HSK 2"]], 
-							[function() { HSK_WORDLIST = 1; }, function() { HSK_WORDLIST = 2; }], 
-							this.radioButtonSize);
+	this.hskRadioButtons = canvas.drawRadioButtons(true, 
+												   0.5 * (canvas.width - this.hskRadioButtonSetSize), 
+												   this.topY + 2 * this.textSize, 
+												   "blue", 
+												   [["HSK 1"], ["HSK 2"]], 
+												   [
+												   	   function() { hskWordList.toggleHskVersion(1); }, 
+												   	   function() { hskWordList.toggleHskVersion(2); }
+												   ], 
+												   this.radioButtonSize);
 	this.testTypeRadioButtonSetSize = 7 * this.radioButtonSize;
 	this.testTypeText = canvas.drawText(0.5 * canvas.width, 
 										this.topY + 2 * this.textSize + this.radioButtonSize, 
@@ -28,17 +32,18 @@ function BeginSessionView()
 														  1.1 * this.testTypeRadioButtonSetSize, 
 														  "white", 
 														  this.underlineThickness);
-	this.testTypeRadioButtons = canvas.drawRadioButtons(0.5 * (canvas.width - this.testTypeRadioButtonSetSize), 
-							this.topY + 4 * this.textSize + this.radioButtonSize, 
-							"blue", 
-							[["Characters +", "Pinyin"], ["Characters"], ["Pinyin"], ["English", "Translation"]], 
-							[
-								function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS_AND_PINYIN; }, 
-								function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS; }, 
-								function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.PINYIN; }, 
-								function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.ENGLISH; }
-							], 
-							this.radioButtonSize);
+	this.testTypeRadioButtons = canvas.drawRadioButtons(false,
+														0.5 * (canvas.width - this.testTypeRadioButtonSetSize), 
+														this.topY + 4 * this.textSize + this.radioButtonSize, 
+														"blue", 
+														[["Characters +", "Pinyin"], ["Characters"], ["Pinyin"], ["English", "Translation"]], 
+														[
+															function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS_AND_PINYIN; }, 
+															function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS; }, 
+															function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.PINYIN; }, 
+															function() { FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.ENGLISH; }
+														], 
+														this.radioButtonSize);
 	this.beginSessionButton = this.drawBeginSessionButton();
 	this.clear();
 }

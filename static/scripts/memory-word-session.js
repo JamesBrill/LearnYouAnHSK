@@ -3,7 +3,7 @@ function MemoryWordSession()
 	this.currentWord;
 	this.currentDifficulty;
 	this.easyWords = [];
-	this.hardWords = (HSK_WORDLIST == 1) ? HSK1MemoryWords.slice() : HSK2MemoryWords.slice();
+	this.hardWords = this.buildWordList();
 	this.updateMemoryWords();
 }
 
@@ -29,4 +29,18 @@ MemoryWordSession.prototype.markCurrentWordAsEasy = function()
 	this.hardWords.splice($.inArray(this.currentWord, this.hardWords), 1);
 	console.log(this.currentWord.meaning + " moved from HARD to EASY");
 	this.easyWords.push(this.currentWord);
+}
+
+MemoryWordSession.prototype.buildWordList = function()
+{
+	var wordList = [];
+	if (hskWordList.isHskVersionActive(1))
+	{
+		$.merge(wordList, HSK1MemoryWords);
+	}
+	if (hskWordList.isHskVersionActive(2))
+	{
+		$.merge(wordList, HSK2MemoryWords);
+	}
+	return wordList;
 }

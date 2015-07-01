@@ -19,6 +19,19 @@ RadioButtons.prototype.select = function(index)
 	}
 }
 
+RadioButtons.prototype.multiselect = function(index)
+{
+	var stroke = this.buttons[index].box.attr("stroke");
+	if (stroke != "yellow")
+	{
+		this.buttons[index].box.attr({ stroke: "yellow", "stroke-width": this.strokeSize });
+	}
+	else
+	{
+		this.buttons[index].box.attr({ stroke: null });
+	}	
+}
+
 RadioButtons.prototype.reset = function()
 {
 	for (var i = 0; i < this.buttons.length; i++) 

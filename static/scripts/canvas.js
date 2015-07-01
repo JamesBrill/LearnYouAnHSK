@@ -7,7 +7,7 @@ function Canvas()
 	this.background = this.draw.rect("100%", "100%");
 }
 
-Canvas.prototype.drawRadioButtons = function(leftX, topY, colour, texts, clickHandlers, size)
+Canvas.prototype.drawRadioButtons = function(multiselect, leftX, topY, colour, texts, clickHandlers, size)
 {
 	var x = leftX;
 	var radioButtons = new RadioButtons(0.03 * size);
@@ -15,7 +15,14 @@ Canvas.prototype.drawRadioButtons = function(leftX, topY, colour, texts, clickHa
 	{
 		var clickHandler = function(i)
 		{
-			radioButtons.select(i);
+			if (multiselect)
+			{
+				radioButtons.multiselect(i);
+			}
+			else
+			{
+				radioButtons.select(i);
+			}
 			clickHandlers[i]();
 		}.bind(this, i);
 		var radioButton = this.drawRadioButton(x, topY, colour, texts[i], clickHandler, size);
