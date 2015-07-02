@@ -18,7 +18,20 @@ MemoryWordSession.prototype.updateMemoryWords = function()
 
 MemoryWordSession.prototype.setHardWord = function()
 {
-	var index = Math.floor(Math.random() * this.hardWords.length);
+	var index;
+	var currentWordHardListIndex = $.inArray(this.currentWord, this.hardWords);
+	if (currentWordHardListIndex != -1 && this.hardWords.length > 1)
+	{
+		var copyList = this.hardWords.slice(0);
+		copyList.splice(currentWordHardListIndex, 1);
+		var copyIndex = Math.floor(Math.random() * copyList.length);
+		var cardChosenFromCopyList = copyList[copyIndex];
+		index = $.inArray(cardChosenFromCopyList, this.hardWords);
+	}
+	else
+	{
+		index = Math.floor(Math.random() * this.hardWords.length);
+	}
 	this.currentWord = this.hardWords[index];
 }
 
