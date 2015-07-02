@@ -1,7 +1,6 @@
 function MemoryWordSession() 
 {
 	this.currentWord;
-	this.currentDifficulty;
 	this.easyWords = [];
 	this.hardWords = this.buildWordList();
 	this.updateMemoryWords();
@@ -21,7 +20,6 @@ MemoryWordSession.prototype.setHardWord = function()
 {
 	var index = Math.floor(Math.random() * this.hardWords.length);
 	this.currentWord = this.hardWords[index];
-	this.currentDifficulty = "hard";	
 }
 
 MemoryWordSession.prototype.markCurrentWordAsEasy = function()
