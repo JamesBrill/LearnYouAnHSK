@@ -1,6 +1,6 @@
 function Canvas() 
 {
-	$('#drawing').height("95vh");
+	$('#drawing').height("98vh");
 	this.width = $('#drawing').width();
 	this.height = $('#drawing').height();
 	this.draw = SVG('drawing').size("100%", "100%");
