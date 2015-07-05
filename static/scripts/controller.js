@@ -31,12 +31,14 @@ Controller.prototype.processState = function()
 			beginSessionView.displayBeginSessionMenu();
 			break;
 		case "DelegateToFlashcardController":
+			Analytics.reportBeginSession(hskWordList, FLASHCARD_DISPLAY_MODE);
 			beginSessionView.clear();
 			beginSessionView.showCreateNewSessionButton();
 			flashcardController = new FlashcardController();
 			flashcardController.performPhase();
 			break;
 		case "SessionComplete":
+			Analytics.reportCompleteSession(hskWordList, FLASHCARD_DISPLAY_MODE);
 			flashcardView.clear();
 			flashcardController = null;
 			interactionController.beginAwaitingSessionCompleteKey();
