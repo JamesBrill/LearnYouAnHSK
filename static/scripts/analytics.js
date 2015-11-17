@@ -24,13 +24,13 @@ var analytics = function (sessionWordList, sessionDisplayMode) {
     }
   }
 
-  var sessionWordListName = getHskWordListForAnalytics();
-  var sessionDisplayModeName = getDisplayModeForAnalytics();
-
   var reportSessionEvent = function (action) {
     ga('send', 'event', 'sessions', action, sessionWordListName);
     ga('send', 'event', 'sessions', action, sessionDisplayModeName);
   }
+
+  var sessionWordListName = getHskWordListForAnalytics();
+  var sessionDisplayModeName = getDisplayModeForAnalytics();
 
   return {
     reportBeginSession : function () {
