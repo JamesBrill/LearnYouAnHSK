@@ -6,6 +6,7 @@ function Controller()
 		"DelegateToFlashcardController",
 		"SessionComplete"
 	];
+	this.analytics = analytics(hskWordList, FLASHCARD_DISPLAY_MODE);
 	this.stateIndex = 0;
 	beginSessionView = new BeginSessionView();
 	flashcardView = new FlashcardView();
@@ -31,14 +32,15 @@ Controller.prototype.processState = function()
 			beginSessionView.displayBeginSessionMenu();
 			break;
 		case "DelegateToFlashcardController":
-			Analytics.reportBeginSession(hskWordList, FLASHCARD_DISPLAY_MODE);
+			this.analytics = analytics(hskWordList, FLASHCARD_DISPLAY_MODE);
+			this.analytics.reportBeginSession();
 			beginSessionView.clear();
 			beginSessionView.showCreateNewSessionButton();
 			flashcardController = new FlashcardController();
 			flashcardController.performPhase();
 			break;
 		case "SessionComplete":
-			Analytics.reportCompleteSession(hskWordList, FLASHCARD_DISPLAY_MODE);
+			this.analytics.reportCompleteSession();
 			flashcardView.clear();
 			flashcardController = null;
 			interactionController.beginAwaitingSessionCompleteKey();
