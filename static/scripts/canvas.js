@@ -50,6 +50,29 @@ var canvas = function () {
     return { box: box, text: text };
   }
 
+  var drawText = function (x, y, text, font, fontSize, cursor) {      
+    var text = draw.text(function(add) {
+      if ($.isArray(text)) {
+          for (var i = 0; i < text.length; i++) {
+            add.tspan(text[i]).newLine();
+          }
+      }
+      else {
+        add.tspan(text).newLine();
+      }
+    });
+    text.fill("white");
+    text.move(x, y);
+    text.font({
+      family: font,
+      size: fontSize,
+      anchor: "middle",
+      class: "disable_text_highlighting",
+      cursor: cursor || "default"  
+    }); 
+    return text;
+  }
+
   return {
     drawRadioButtons : function (multiselect, leftX, topY, colour, texts, clickHandlers, size) {
       var x = leftX;
@@ -83,45 +106,11 @@ var canvas = function () {
       }.bind(this));
       box.attr({ cursor: "pointer" });
 
-      var text = draw.text(function(add) {
-        for (var i = 0; i < text.length; i++) {
-          add.tspan(text[i]).newLine();
-        }
-      });
-      text.fill("white");
-      text.move(x, y + offset);
-      text.font({
-        family: "Helvetica",
-        size: 0.15 * size,
-        anchor: "middle",
-        class: "disable_text_highlighting",
-        cursor: "pointer" 
-      }); 
-      text.click(clickHandler); 
+      var text = drawText(x, y + offset, text, "Helvetica", 0.15 * size, "pointer") 
+      text.click(clickHandler);
       return { box: box, text: text };
     },
-    drawText : function (x, y, text, font, fontSize, cursor) {      
-      var text = draw.text(function(add) {
-        if ($.isArray(text)) {
-            for (var i = 0; i < text.length; i++) {
-              add.tspan(text[i]).newLine();
-            }
-        }
-        else {
-          add.tspan(text).newLine();
-        }
-      });
-      text.fill("white");
-      text.move(x, y);
-      text.font({
-        family: font,
-        size: fontSize,
-        anchor: "middle",
-        class: "disable_text_highlighting",
-        cursor: cursor || "default"  
-      }); 
-      return text;
-    },
+    drawText : drawText,
     drawGroup : function (items) {
       var group = draw.group();
       for (var i = 0; i < items.length; i++) {
