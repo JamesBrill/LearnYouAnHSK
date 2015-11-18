@@ -2,9 +2,9 @@ function FlashcardView()
 {
 	this.question;
 	this.answer;
-	this.FLASHCARD_TOP = 0.1 * canvas.height;
-	this.discardedCounter = canvas.drawText(0.1 * canvas.width, 0.4 * canvas.height, "Discarded: 0", "Helvetica", 0.25 * TEXT_SIZE);
-	this.remainingCounter = canvas.drawText(0.1 * canvas.width, 0.5 * canvas.height, "Remaining: 0", "Helvetica", 0.25 * TEXT_SIZE);
+	this.FLASHCARD_TOP = 0.1 * canvas.getHeight();
+	this.discardedCounter = canvas.drawText(0.1 * canvas.getWidth(), 0.4 * canvas.getHeight(), "Discarded: 0", "Helvetica", 0.25 * TEXT_SIZE);
+	this.remainingCounter = canvas.drawText(0.1 * canvas.getWidth(), 0.5 * canvas.getHeight(), "Remaining: 0", "Helvetica", 0.25 * TEXT_SIZE);
 	this.answerBoxes;
 	this.answerBoxSize = 1.2 * TEXT_SIZE;
 	if (FLASHCARD_DISPLAY_MODE == FlashcardDisplayMode.CHARACTERS_AND_PINYIN)
@@ -34,9 +34,8 @@ FlashcardView.prototype.displayQuestion = function(memoryWord)
 			question = this.drawEnglish(memoryWord.meaning, this.FLASHCARD_TOP);
 			break;
 		case FlashcardDisplayMode.CHARACTERS_AND_PINYIN:
-			var question = canvas.draw.group();
-			question.add(this.drawChinese(memoryWord.characters, this.FLASHCARD_TOP));
-			question.add(this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + TEXT_SIZE));
+			question = canvas.drawGroup([this.drawChinese(memoryWord.characters, this.FLASHCARD_TOP),
+							  			 this.drawChinese(memoryWord.pinyin, this.FLASHCARD_TOP + TEXT_SIZE)])
 			break;
 		default:
 			console.log("Invalid flashcard display mode.")
@@ -47,19 +46,19 @@ FlashcardView.prototype.displayQuestion = function(memoryWord)
 
 FlashcardView.prototype.initAnswerBoxes = function(height)
 {
-	var easyBoxElements = this.drawAnswerBox(0.3 * canvas.width, 
+	var easyBoxElements = this.drawAnswerBox(0.3 * canvas.getWidth(), 
 											 height, 
 											 ["Too easy [Q]"], 
 											 "green", 
 											 0.15 * this.answerBoxSize,
 											 function() { flashcardController.markFlashcardAsEasy(); });
-	var showAnswerBoxElements = this.drawAnswerBox(0.5 * canvas.width, 
+	var showAnswerBoxElements = this.drawAnswerBox(0.5 * canvas.getWidth(), 
 												   height, 
 												   ["Show answer", "[Space]"], 
 												   "gray", 
 												   0.05 * this.answerBoxSize,
 												   function() { flashcardController.revealAnswer(); });
-	var hardBoxElements = this.drawAnswerBox(0.7 * canvas.width, 
+	var hardBoxElements = this.drawAnswerBox(0.7 * canvas.getWidth(), 
 											 height, 
 											 ["Not easy [W]"], 
 											 "red", 
@@ -140,13 +139,13 @@ FlashcardView.prototype.displayAnswer = function(memoryWord)
 
 FlashcardView.prototype.drawChinese = function(chinese, height)
 {
-	return canvas.drawText(0.5 * canvas.width, height, chinese, "SimHei", TEXT_SIZE);
+	return canvas.drawText(0.5 * canvas.getWidth(), height, chinese, "SimHei", TEXT_SIZE);
 }
 
 FlashcardView.prototype.drawEnglish = function(english, height)
 {
 	var englishSize = (english.length > 15) ? 0.5 * TEXT_SIZE : 0.75 * TEXT_SIZE;
-	return canvas.drawText(0.5 * canvas.width, height, english, "Helvetica", englishSize);
+	return canvas.drawText(0.5 * canvas.getWidth(), height, english, "Helvetica", englishSize);
 }
 
 FlashcardView.prototype.clear = function()

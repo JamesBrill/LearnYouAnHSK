@@ -12,7 +12,7 @@ function Controller()
 	flashcardView = new FlashcardView();
 	completeSessionView = new CompleteSessionView();
 	interactionController = new InteractionController();	
-	canvas.background.mouseover(function() { this.resetAnswerBoxes(); }.bind(this));
+	canvas.getBackground().mouseover(function() { this.resetAnswerBoxes(); }.bind(this));
 }
 
 Controller.prototype.nextState = function()

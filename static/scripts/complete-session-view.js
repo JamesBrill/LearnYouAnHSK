@@ -8,53 +8,22 @@ function CompleteSessionView()
 
 CompleteSessionView.prototype.initSessionCompleteButtons = function()
 {
-	var repeatSessionBoxElements = this.drawSessionCompleteButton(0.4 * canvas.width, 
-													  0.7 * canvas.height, 
-													  ["Repeat", "session [R]"], 
-													  "blue", 
-													  0.05 * this.sessionCompleteButtonSize,
-													  function() { controller.repeatSession(); });
-	var newSessionBoxElements = this.drawSessionCompleteButton(0.6 * canvas.width, 
-												   0.7 * canvas.height, 
-												   ["New", "session [N]"], 
-												   "blue", 
-												   0.05 * this.sessionCompleteButtonSize,
-												   function() { controller.newSession(); });
+	var repeatSessionBoxElements = canvas.drawButton(0.4 * canvas.getWidth(), 
+													 0.7 * canvas.getHeight(), 
+													 ["Repeat", "session [R]"], 
+													 "blue", 
+													 0.05 * this.sessionCompleteButtonSize,
+													 function() { controller.repeatSession(); },
+													 this.sessionCompleteButtonSize);
+	var newSessionBoxElements = canvas.drawButton(0.6 * canvas.getWidth(), 
+												  0.7 * canvas.getHeight(), 
+												  ["New", "session [N]"], 
+												  "blue", 
+												  0.05 * this.sessionCompleteButtonSize,
+												  function() { controller.newSession(); },
+												  this.sessionCompleteButtonSize);
 	this.sessionCompleteButtons = [ repeatSessionBoxElements, newSessionBoxElements ];
 	this.hideSessionCompleteButtons();
-}
-
-CompleteSessionView.prototype.drawSessionCompleteButton = function(x, y, text, colour, offset, clickHandler)
-{
-	var box = canvas.draw.rect(this.sessionCompleteButtonSize, 0.5 * this.sessionCompleteButtonSize);
-	box.move(x - 0.5 * this.sessionCompleteButtonSize, y);
-	box.fill(colour);
-	box.radius(0.05 * this.sessionCompleteButtonSize);
-	box.click(clickHandler);
-	box.mouseover(function()
-	{		
-		box.attr({ stroke: "white", "stroke-width": 0.03 * this.sessionCompleteButtonSize });
-	}.bind(this));
-	box.attr({ cursor: "pointer" });
-
- 	var text = canvas.draw.text(function(add)
-	{
-		for (var i = 0; i < text.length; i++)
-		{
-			add.tspan(text[i]).newLine();
-		}
-	});
-	text.fill("white");
-	text.move(x, y + offset);
-	text.font({
-		family: "Helvetica",
-		size: 0.15 * this.sessionCompleteButtonSize,
-		anchor: "middle",
-		class: "disable_text_highlighting",
-		cursor: "pointer" 
-	});	
-	text.click(clickHandler);	
-	return { box: box, text: text };
 }
 
 CompleteSessionView.prototype.resetSessionCompleteButtons = function()
@@ -91,21 +60,12 @@ CompleteSessionView.prototype.displaySessionCompleteMenu = function()
 
 CompleteSessionView.prototype.displaySessionCompleteText = function()
 {
- 	var text = canvas.draw.text(function(add)
-	{
-		add.tspan("Session").newLine(),
-		add.tspan("complete!").newLine()
-	});
-	text.fill("white");
-	text.move(0.5 * canvas.width, 0.1 * canvas.height);
-	text.font({
-		family: "Helvetica",
-		size: 0.75 * TEXT_SIZE,
-		anchor: "middle",
-		class: "disable_text_highlighting",
-		cursor: "pointer" 
-	});	
-	return text;
+	return canvas.drawText(0.5 * canvas.getWidth(), 
+						   0.1 * canvas.getHeight(), 
+						   ["Session", "complete!"], 
+						   "Helvetica", 
+						   0.75 * TEXT_SIZE, 
+						   "pointer");
 }
 
 CompleteSessionView.prototype.clear = function()

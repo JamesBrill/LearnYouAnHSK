@@ -13,7 +13,7 @@ $(document).ready(function ()
 {  
 	var init = function()
 	{
-		canvas = new Canvas();
+		canvas = canvas();
 		controller = new Controller();
 		controller.processState();
 	}
