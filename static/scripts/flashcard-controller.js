@@ -1,4 +1,4 @@
-function FlashcardController() 
+function FlashcardController(interactionController) 
 {
 	this.flashcardPhases = 
 	[
@@ -8,6 +8,7 @@ function FlashcardController()
 		"AwaitDifficultyKey",
 		"ClearFlashcard"
 	];
+	this.interactionController = interactionController;
 	this.flashcardPhaseIndex = 0;
 	this.memoryWordSession = new MemoryWordSession();
 	var remainingCards = this.memoryWordSession.numberOfRemainingCards();	
@@ -33,7 +34,7 @@ FlashcardController.prototype.performPhase = function()
 			this.nextPhase();
 			break;
 		case "AwaitSpacebar":
-			interactionController.beginAwaitingSpacebar();
+			this.interactionController.beginAwaitingSpacebar();
 			break;
 		case "DisplayAnswer":
 			var memoryWord = this.memoryWordSession.currentWord;
@@ -41,7 +42,7 @@ FlashcardController.prototype.performPhase = function()
 			this.nextPhase();
 			break;
 		case "AwaitDifficultyKey":
-			interactionController.beginAwaitingDifficultyKey();
+			this.interactionController.beginAwaitingDifficultyKey();
 			break;
 		case "ClearFlashcard":
 			flashcardView.clearFlashcard();

@@ -1,69 +1,60 @@
-function InteractionController() {}
+var interactionController = function () {
+  var SPACEBAR = 32;
+  var Q = 113;
+  var W = 119;
+  var R = 114;
+  var N = 110;
 
-InteractionController.prototype.beginAwaitingSpacebar = function()
-{
-	$(document).off();
-	$(document).keypress(InteractionController.spacebarHandler);
-}
+  var spacebarHandler = function (e) {
+    var code = e.keyCode || e.which;
+    if (code == SPACEBAR) {
+      flashcardController.revealAnswer();
+    }
+    else {
+      handleDifficultyKey(code);
+    }
+  }
 
-InteractionController.prototype.beginAwaitingDifficultyKey = function()
-{
-	$(document).off();
-	$(document).keypress(InteractionController.difficultyKeyHandler);
-}
+  var difficultyKeyHandler = function (e) {
+    var code = e.keyCode || e.which;
+    handleDifficultyKey(code);
+  }
 
-InteractionController.prototype.beginAwaitingSessionCompleteKey = function()
-{
-	$(document).off();
-	$(document).keypress(InteractionController.sessionCompleteKeyHandler);
-}
+  var sessionCompleteKeyHandler = function (e) {
+    var code = e.keyCode || e.which;
+    handleSessionCompleteKey(code);
+  }
 
+  var handleDifficultyKey = function (code) {
+    if (code == Q) {
+      flashcardController.markFlashcardAsEasy();
+    }
+    else if (code == W) {
+      flashcardController.markFlashcardAsHard();
+    }
+  }
 
-InteractionController.spacebarHandler = function(e)
-{
-	var code = e.keyCode || e.which;
-	if (code == KeyCode.SPACEBAR)
-	{
-		flashcardController.revealAnswer();
-	}
-	else
-	{
-		InteractionController.handleDifficultyKey(code);
-	}
-}
+  var handleSessionCompleteKey = function (code) {
+    if (code == R) {
+      controller.repeatSession();
+    }
+    else if (code == N) {
+      controller.newSession();
+    }
+  }
 
-InteractionController.difficultyKeyHandler = function(e)
-{
-	var code = e.keyCode || e.which;
-	InteractionController.handleDifficultyKey(code);
-}
-
-InteractionController.sessionCompleteKeyHandler = function(e)
-{
-	var code = e.keyCode || e.which;
-	InteractionController.handleSessionCompleteKey(code);
-}
-
-InteractionController.handleDifficultyKey = function(code)
-{
-	if (code == KeyCode.Q)
-	{
-		flashcardController.markFlashcardAsEasy();
-	}	
-	else if (code == KeyCode.W)
-	{
-		flashcardController.markFlashcardAsHard();
-	}
-}
-
-InteractionController.handleSessionCompleteKey = function(code)
-{
-	if (code == KeyCode.R)
-	{
-		controller.repeatSession();
-	}	
-	else if (code == KeyCode.N)
-	{
-		controller.newSession();
-	}
+  return {
+    beginAwaitingSpacebar : function () {
+      $(document).off();
+      $(document).keypress(spacebarHandler);
+    },
+    beginAwaitingDifficultyKey : function () {
+      $(document).off();
+      $(document).keypress(difficultyKeyHandler);
+    },
+    beginAwaitingSessionCompleteKey : function () {
+      $(document).off();
+      $(document).keypress(sessionCompleteKeyHandler);
+    }
+  };
 }

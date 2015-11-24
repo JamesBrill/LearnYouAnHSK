@@ -1,4 +1,4 @@
-function Controller() 
+function Controller(interactionController) 
 {
 	this.states = 
 	[
@@ -8,10 +8,10 @@ function Controller()
 	];
 	this.analytics = analytics(hskWordList, FLASHCARD_DISPLAY_MODE);
 	this.stateIndex = 0;
+	this.interactionController = interactionController;
 	beginSessionView = new BeginSessionView();
 	flashcardView = new FlashcardView();
-	completeSessionView = new CompleteSessionView();
-	interactionController = new InteractionController();	
+	completeSessionView = new CompleteSessionView();	
 	canvas.getBackground().mouseover(function() { this.resetAnswerBoxes(); }.bind(this));
 }
 
@@ -36,14 +36,14 @@ Controller.prototype.processState = function()
 			this.analytics.reportBeginSession();
 			beginSessionView.clear();
 			beginSessionView.showCreateNewSessionButton();
-			flashcardController = new FlashcardController();
+			flashcardController = new FlashcardController(this.interactionController);
 			flashcardController.performPhase();
 			break;
 		case "SessionComplete":
 			this.analytics.reportCompleteSession();
 			flashcardView.clear();
 			flashcardController = null;
-			interactionController.beginAwaitingSessionCompleteKey();
+			this.interactionController.beginAwaitingSessionCompleteKey();
 			completeSessionView.displaySessionCompleteMenu();
 			break;
 		default: 

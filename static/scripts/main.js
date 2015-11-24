@@ -3,7 +3,6 @@ var FLASHCARD_DISPLAY_MODE = FlashcardDisplayMode.CHARACTERS_AND_PINYIN;
 var hskWordList = new WordList(1);
 var controller;
 var flashcardController;
-var interactionController;
 var beginSessionView;
 var flashcardView;
 var completeSessionView;
@@ -14,7 +13,7 @@ $(document).ready(function ()
 	var init = function()
 	{
 		canvas = canvas();
-		controller = new Controller();
+		controller = new Controller(interactionController());
 		controller.processState();
 	}
 
