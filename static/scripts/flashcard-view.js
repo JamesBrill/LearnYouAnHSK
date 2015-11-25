@@ -63,7 +63,7 @@ FlashcardView.prototype.initAnswerBoxes = function(height)
 											 ["Not easy [W]"], 
 											 "red", 
 											 0.15 * this.answerBoxSize,
-											 function() { flashcardController.markFlashcardAsHard(); });
+											 function() { flashcardController.startNewFlashcard(); });
 	this.answerBoxes = [ easyBoxElements, showAnswerBoxElements, hardBoxElements ];
 }
 

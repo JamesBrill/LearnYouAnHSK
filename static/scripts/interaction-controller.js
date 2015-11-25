@@ -30,7 +30,7 @@ var interactionController = function () {
       flashcardController.markFlashcardAsEasy();
     }
     else if (code == W) {
-      flashcardController.markFlashcardAsHard();
+      flashcardController.startNewFlashcard();
     }
   }
 

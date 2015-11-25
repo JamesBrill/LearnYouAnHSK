@@ -1,59 +1,45 @@
-function FlashcardController(interactionController) 
-{
-	var that = this;
-	var flashcardPhases = 
-	[
-		"DisplayNextQuestion",
-		"DisplayAnswer"
-	];
-	var flashcardPhaseActions = 
-	[
-		function () {
-			flashcardView.clearFlashcard();
-			if (that.memoryWordSession.updateMemoryWords() !== "SessionComplete") {
-				var memoryWord = that.memoryWordSession.currentWord;
-				flashcardView.displayQuestion(memoryWord);
-				that.interactionController.beginAwaitingSpacebar();
-			}
-		},
-		function () {
-			var memoryWord = that.memoryWordSession.currentWord;
-			flashcardView.displayAnswer(memoryWord);
-			that.interactionController.beginAwaitingDifficultyKey();
-		}
-	];
-	this.phaseIterator = phaseIterator(flashcardPhases, flashcardPhaseActions);
-	this.interactionController = interactionController;
-	this.memoryWordSession = new MemoryWordSession();
-	var remainingCards = this.memoryWordSession.numberOfRemainingCards();	
-	flashcardView.setCounters(0, remainingCards);
-	flashcardView.showCounters();
-}
+var flashcardController = function (interactionController) {
+  var memoryWordSession = new MemoryWordSession();
+  var remainingCards = memoryWordSession.numberOfRemainingCards(); 
+  flashcardView.setCounters(0, remainingCards);
+  flashcardView.showCounters();
 
-FlashcardController.prototype.startNewFlashcard = function() 
-{
-	this.phaseIterator.gotoPhase("DisplayNextQuestion");	
-}
+  var displayNextQuestion = function () { 
+    flashcardView.clearFlashcard();
+    if (memoryWordSession.updateMemoryWords() !== "SessionComplete") {
+      var memoryWord = memoryWordSession.currentWord;
+      flashcardView.displayQuestion(memoryWord);
+      interactionController.beginAwaitingSpacebar();
+    }
+  }
 
-FlashcardController.prototype.markFlashcardAsEasy = function()
-{
-	this.memoryWordSession.markCurrentWordAsEasy();
-	var discardedCards = this.memoryWordSession.numberOfDiscardedCards();
-	var remainingCards = this.memoryWordSession.numberOfRemainingCards();
-	flashcardView.setCounters(discardedCards, remainingCards);
-	this.startNewFlashcard();
-}
+  var displayAnswer = function () {
+    var memoryWord = memoryWordSession.currentWord;
+    flashcardView.displayAnswer(memoryWord);
+    interactionController.beginAwaitingDifficultyKey();
+  }
 
-FlashcardController.prototype.markFlashcardAsHard = function()
-{
-	this.startNewFlashcard();
-}
+  var flashcardPhases = [ "DisplayNextQuestion", "DisplayAnswer" ];
+  var flashcardPhaseActions = [ displayNextQuestion, displayAnswer ];
+  var phases = phaseIterator(flashcardPhases, flashcardPhaseActions);
 
-FlashcardController.prototype.revealAnswer = function()
-{
-	var phase = this.phaseIterator.currentPhase();
-	if (phase == "DisplayNextQuestion")
-	{
-		this.phaseIterator.gotoPhase("DisplayAnswer");
-	}	
+  return {
+    startNewFlashcard : function () {
+      phases.gotoPhase("DisplayNextQuestion");  
+    },
+    markFlashcardAsEasy : function () {
+      memoryWordSession.markCurrentWordAsEasy();
+      var discardedCards = memoryWordSession.numberOfDiscardedCards();
+      var remainingCards = memoryWordSession.numberOfRemainingCards();
+      flashcardView.setCounters(discardedCards, remainingCards);
+      this.startNewFlashcard();
+    },
+    revealAnswer : function () {
+      var phase = phases.currentPhase();
+      if (phase == "DisplayNextQuestion")
+      {
+        phases.gotoPhase("DisplayAnswer");
+      } 
+    }
+  };
 }
