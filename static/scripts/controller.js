@@ -37,7 +37,7 @@ Controller.prototype.processState = function()
 			beginSessionView.clear();
 			beginSessionView.showCreateNewSessionButton();
 			flashcardController = new FlashcardController(this.interactionController);
-			flashcardController.performPhase();
+			flashcardController.phaseIterator.performPhase();
 			break;
 		case "SessionComplete":
 			this.analytics.reportCompleteSession();
