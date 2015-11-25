@@ -30,18 +30,23 @@ function FlashcardController(interactionController)
 	flashcardView.showCounters();
 }
 
+FlashcardController.prototype.startNewFlashcard = function() 
+{
+	this.phaseIterator.gotoPhase("DisplayNextQuestion");	
+}
+
 FlashcardController.prototype.markFlashcardAsEasy = function()
 {
 	this.memoryWordSession.markCurrentWordAsEasy();
 	var discardedCards = this.memoryWordSession.numberOfDiscardedCards();
 	var remainingCards = this.memoryWordSession.numberOfRemainingCards();
 	flashcardView.setCounters(discardedCards, remainingCards);
-	this.phaseIterator.gotoPhase("DisplayNextQuestion");
+	this.startNewFlashcard();
 }
 
 FlashcardController.prototype.markFlashcardAsHard = function()
 {
-	this.phaseIterator.gotoPhase("DisplayNextQuestion");
+	this.startNewFlashcard();
 }
 
 FlashcardController.prototype.revealAnswer = function()
@@ -49,6 +54,6 @@ FlashcardController.prototype.revealAnswer = function()
 	var phase = this.phaseIterator.currentPhase();
 	if (phase == "DisplayNextQuestion")
 	{
-		this.phaseIterator.nextPhase();
+		this.phaseIterator.gotoPhase("DisplayAnswer");
 	}	
 }
