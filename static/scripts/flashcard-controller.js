@@ -1,4 +1,4 @@
-var flashcardController = function (interactionController) {
+var flashcardController = function (interactionController, flashcardView) {
   var memoryWordSession = new MemoryWordSession();
   var remainingCards = memoryWordSession.numberOfRemainingCards(); 
   flashcardView.setCounters(0, remainingCards);

@@ -1,4 +1,4 @@
-var controller = function (interactionController) {
+var controller = function (interactionController, flashcardView) {
 	var states = 
 	[
 		"ConfigForm",
@@ -8,7 +8,6 @@ var controller = function (interactionController) {
 	var hskAnalytics = analytics(hskWordList, FLASHCARD_DISPLAY_MODE);
 	var stateIndex = 0;
 	beginSessionView = new BeginSessionView();
-	flashcardView = new FlashcardView();
 	completeSessionView = new CompleteSessionView();	
 	canvas.getBackground().mouseover(function() { resetAnswerBoxes(); });
 
@@ -37,7 +36,7 @@ var controller = function (interactionController) {
 					hskAnalytics.reportBeginSession();
 					beginSessionView.clear();
 					beginSessionView.showCreateNewSessionButton();
-					hskFlashcardController = flashcardController(interactionController);
+					hskFlashcardController = flashcardController(interactionController, flashcardView);
 					hskFlashcardController.startNewFlashcard();
 					break;
 				case "SessionComplete":

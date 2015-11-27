@@ -4,7 +4,6 @@ var hskWordList = new WordList(1);
 var hskController;
 var hskFlashcardController;
 var beginSessionView;
-var flashcardView;
 var completeSessionView;
 var canvas;
 
@@ -13,7 +12,7 @@ $(document).ready(function ()
 	var init = function()
 	{
 		canvas = canvas();
-		hskController = controller(interactionController());
+		hskController = controller(interactionController(), new FlashcardView());
 		hskController.processState();
 	}
 
