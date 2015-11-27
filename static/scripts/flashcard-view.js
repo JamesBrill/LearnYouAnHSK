@@ -119,6 +119,9 @@ FlashcardView.prototype.setCounters = function(discardedCards, remainingCards)
 FlashcardView.prototype.displayAnswer = function(memoryWord)
 {
 	var answer;
+	if (this.answer && this.answer.length() != 0) {
+		return;
+	}
 	switch (FLASHCARD_DISPLAY_MODE)
 	{
 		case FlashcardDisplayMode.CHARACTERS:
