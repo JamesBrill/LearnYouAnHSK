@@ -28,6 +28,7 @@ var interactionController = function () {
   var handleDifficultyKey = function (code) {
     if (code == Q) {
       hskFlashcardController.markFlashcardAsEasy();
+      hskFlashcardController.startNewFlashcard();
     }
     else if (code == W) {
       hskFlashcardController.startNewFlashcard();

@@ -51,7 +51,10 @@ FlashcardView.prototype.initAnswerBoxes = function(height)
 											 ["Too easy [Q]"], 
 											 "green", 
 											 0.15 * this.answerBoxSize,
-											 function() { hskFlashcardController.markFlashcardAsEasy(); });
+											 function() { 
+											 	hskFlashcardController.markFlashcardAsEasy();
+											 	hskFlashcardController.startNewFlashcard(); 
+											 });
 	var showAnswerBoxElements = this.drawAnswerBox(0.5 * canvas.getWidth(), 
 												   height, 
 												   ["Show answer", "[Space]"], 

@@ -32,7 +32,6 @@ var flashcardController = function (interactionController, flashcardView) {
       var discardedCards = memoryWordSession.numberOfDiscardedCards();
       var remainingCards = memoryWordSession.numberOfRemainingCards();
       flashcardView.setCounters(discardedCards, remainingCards);
-      this.startNewFlashcard();
     },
     revealAnswer : function () {
       phases.gotoPhase("DisplayAnswer");
