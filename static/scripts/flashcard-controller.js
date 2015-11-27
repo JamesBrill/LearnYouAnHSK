@@ -35,11 +35,7 @@ var flashcardController = function (interactionController, flashcardView) {
       this.startNewFlashcard();
     },
     revealAnswer : function () {
-      var phase = phases.currentPhase();
-      if (phase == "DisplayNextQuestion")
-      {
-        phases.gotoPhase("DisplayAnswer");
-      } 
+      phases.gotoPhase("DisplayAnswer");
     }
   };
 }
