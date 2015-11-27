@@ -14,7 +14,7 @@ $(document).ready(function ()
 								   new FlashcardView(), 
 								   new BeginSessionView(), 
 								   new CompleteSessionView());
-		hskController.processState();
+		hskController.newSession();
 	}
 
 	if (SVG.supported)

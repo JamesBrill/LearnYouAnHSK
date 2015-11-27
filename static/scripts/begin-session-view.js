@@ -89,7 +89,7 @@ BeginSessionView.prototype.drawBeginSessionButton = function()
 							 ["Begin session"],
 							 "green",
 							 0.15 * this.radioButtonSize,
-							 function() { hskController.nextState(); },
+							 function() { hskController.beginSession(); },
 							 this.radioButtonSize);
 }
 

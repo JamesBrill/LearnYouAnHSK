@@ -9,6 +9,9 @@ var controller = function (interactionController,
 	}
 
 	var configureForm = function () {
+		beginSessionView.clear();
+		beginSessionView.hideCreateNewSessionButton();
+		flashcardView.clear();
 		hskFlashcardController = null;
 		completeSessionView.clear();
 		beginSessionView.displayBeginSessionMenu();
@@ -17,6 +20,7 @@ var controller = function (interactionController,
 	var delegateToFlashcardController = function () {
 		hskAnalytics = analytics(hskWordList, FLASHCARD_DISPLAY_MODE);
 		hskAnalytics.reportBeginSession();
+		completeSessionView.clear();
 		beginSessionView.clear();
 		beginSessionView.showCreateNewSessionButton();
 		hskFlashcardController = flashcardController(interactionController, flashcardView);
@@ -39,21 +43,13 @@ var controller = function (interactionController,
 	canvas.getBackground().mouseover(function() { resetAnswerBoxes(); });
 
 	return {
-		nextState : function () {
-			phases.nextPhase();
-		},
-		processState : function () {
-			phases.performPhase();
-		},
-		repeatSession : function () {
-			completeSessionView.clear();
+		beginSession : function () {
 			phases.gotoPhase("DelegateToFlashcardController");
 		},
+		completeSession : function () {
+			phases.gotoPhase("SessionComplete");
+		},
 		newSession : function () {
-			completeSessionView.clear();
-			beginSessionView.clear();
-			beginSessionView.hideCreateNewSessionButton();
-			flashcardView.clear();
 			phases.gotoPhase("ConfigForm");
 		}
 	};

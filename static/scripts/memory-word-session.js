@@ -10,7 +10,7 @@ MemoryWordSession.prototype.updateMemoryWords = function()
 {
 	if (this.hardWords.length == 0)
 	{
-		hskController.nextState();
+		hskController.completeSession();
 		return "SessionComplete";
 	}
 	this.setHardWord();	

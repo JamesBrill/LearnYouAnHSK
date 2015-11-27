@@ -36,7 +36,7 @@ var interactionController = function () {
 
   var handleSessionCompleteKey = function (code) {
     if (code == R) {
-      hskController.repeatSession();
+      hskController.beginSession();
     }
     else if (code == N) {
       hskController.newSession();
