@@ -9,6 +9,7 @@ var controller = function (interactionController,
 	}
 
 	var configureForm = function () {
+		hskFlashcardController = null;
 		completeSessionView.clear();
 		beginSessionView.displayBeginSessionMenu();
 	}
