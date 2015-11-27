@@ -1,4 +1,7 @@
-var controller = function (interactionController, flashcardView) {
+var controller = function (interactionController, 
+						   flashcardView, 
+						   beginSessionView, 
+						   completeSessionView) {
 	var states = 
 	[
 		"ConfigForm",
@@ -6,9 +9,7 @@ var controller = function (interactionController, flashcardView) {
 		"SessionComplete"
 	];
 	var hskAnalytics = analytics(hskWordList, FLASHCARD_DISPLAY_MODE);
-	var stateIndex = 0;
-	beginSessionView = new BeginSessionView();
-	completeSessionView = new CompleteSessionView();	
+	var stateIndex = 0;	
 	canvas.getBackground().mouseover(function() { resetAnswerBoxes(); });
 
 	var resetAnswerBoxes = function () {
