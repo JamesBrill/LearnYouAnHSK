@@ -13,14 +13,14 @@ CompleteSessionView.prototype.initSessionCompleteButtons = function()
 													 ["Repeat", "session [R]"], 
 													 "blue", 
 													 0.05 * this.sessionCompleteButtonSize,
-													 function() { controller.repeatSession(); },
+													 function() { hskController.repeatSession(); },
 													 this.sessionCompleteButtonSize);
 	var newSessionBoxElements = canvas.drawButton(0.6 * canvas.getWidth(), 
 												  0.7 * canvas.getHeight(), 
 												  ["New", "session [N]"], 
 												  "blue", 
 												  0.05 * this.sessionCompleteButtonSize,
-												  function() { controller.newSession(); },
+												  function() { hskController.newSession(); },
 												  this.sessionCompleteButtonSize);
 	this.sessionCompleteButtons = [ repeatSessionBoxElements, newSessionBoxElements ];
 	this.hideSessionCompleteButtons();

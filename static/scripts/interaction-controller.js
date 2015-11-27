@@ -8,7 +8,7 @@ var interactionController = function () {
   var spacebarHandler = function (e) {
     var code = e.keyCode || e.which;
     if (code == SPACEBAR) {
-      flashcardController.revealAnswer();
+      hskFlashcardController.revealAnswer();
     }
     else {
       handleDifficultyKey(code);
@@ -27,19 +27,19 @@ var interactionController = function () {
 
   var handleDifficultyKey = function (code) {
     if (code == Q) {
-      flashcardController.markFlashcardAsEasy();
+      hskFlashcardController.markFlashcardAsEasy();
     }
     else if (code == W) {
-      flashcardController.startNewFlashcard();
+      hskFlashcardController.startNewFlashcard();
     }
   }
 
   var handleSessionCompleteKey = function (code) {
     if (code == R) {
-      controller.repeatSession();
+      hskController.repeatSession();
     }
     else if (code == N) {
-      controller.newSession();
+      hskController.newSession();
     }
   }
 

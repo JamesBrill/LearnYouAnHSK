@@ -51,19 +51,19 @@ FlashcardView.prototype.initAnswerBoxes = function(height)
 											 ["Too easy [Q]"], 
 											 "green", 
 											 0.15 * this.answerBoxSize,
-											 function() { flashcardController.markFlashcardAsEasy(); });
+											 function() { hskFlashcardController.markFlashcardAsEasy(); });
 	var showAnswerBoxElements = this.drawAnswerBox(0.5 * canvas.getWidth(), 
 												   height, 
 												   ["Show answer", "[Space]"], 
 												   "gray", 
 												   0.05 * this.answerBoxSize,
-												   function() { flashcardController.revealAnswer(); });
+												   function() { hskFlashcardController.revealAnswer(); });
 	var hardBoxElements = this.drawAnswerBox(0.7 * canvas.getWidth(), 
 											 height, 
 											 ["Not easy [W]"], 
 											 "red", 
 											 0.15 * this.answerBoxSize,
-											 function() { flashcardController.startNewFlashcard(); });
+											 function() { hskFlashcardController.startNewFlashcard(); });
 	this.answerBoxes = [ easyBoxElements, showAnswerBoxElements, hardBoxElements ];
 }
 
