@@ -1,19 +1,31 @@
-var controller = function (interactionController, 
-                           flashcardView, 
-                           beginSessionView, 
-                           completeSessionView) {
+var controller = function (interactionController,
+                           flashcardView,
+                           beginSessionView,
+                           completeSessionView,
+                           flashcardDisplayMode) {
   var resetAnswerBoxes = function () {
     completeSessionView.resetSessionCompleteButtons();
     flashcardView.resetAnswerBoxes();
     beginSessionView.resetButtons();
   }
 
-  var hskAnalytics = analytics(hskWordList, FLASHCARD_DISPLAY_MODE);
-  canvas.getBackground().mouseover(function() { resetAnswerBoxes(); });
+  var hskAnalytics = analytics(hskWordList, flashcardDisplayMode);
+  canvas.getBackground().mouseover(function () { resetAnswerBoxes(); });
+
+  var displayModeGetter = function () {
+    return flashcardDisplayMode;
+  }
+
+  var displayModeSetter = function (value) {
+    flashcardDisplayMode = value;
+  }
+
+  flashcardView.init(displayModeGetter);
+  beginSessionView.init(displayModeSetter);
 
   return {
     beginSession : function () {
-      hskAnalytics = analytics(hskWordList, FLASHCARD_DISPLAY_MODE);
+      hskAnalytics = analytics(hskWordList, flashcardDisplayMode);
       hskAnalytics.reportBeginSession();
       completeSessionView.clear();
       beginSessionView.clear();
