@@ -1,6 +1,6 @@
-var flashcardController = function (interactionController, flashcardView) {
+var createFlashcardController = function (interactionController, flashcardView) {
   var memoryWordSession = new MemoryWordSession();
-  var remainingCards = memoryWordSession.numberOfRemainingCards(); 
+  var remainingCards = memoryWordSession.numberOfRemainingCards();
   flashcardView.setCounters(0, remainingCards);
   flashcardView.showCounters();
 
@@ -11,7 +11,7 @@ var flashcardController = function (interactionController, flashcardView) {
         var memoryWord = memoryWordSession.currentWord;
         flashcardView.displayQuestion(memoryWord);
         interactionController.beginAwaitingSpacebar();
-      } 
+      }
     },
     markFlashcardAsEasy : function () {
       memoryWordSession.markCurrentWordAsEasy();

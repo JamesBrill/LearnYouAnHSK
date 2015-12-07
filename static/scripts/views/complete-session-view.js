@@ -1,4 +1,4 @@
-function CompleteSessionView() 
+function CompleteSessionView()
 {
 	this.sessionCompleteText = this.displaySessionCompleteText();;
 	this.sessionCompleteButtons;
@@ -8,19 +8,19 @@ function CompleteSessionView()
 
 CompleteSessionView.prototype.initSessionCompleteButtons = function()
 {
-	var repeatSessionBoxElements = canvas.drawButton(0.4 * canvas.getWidth(), 
-													 0.7 * canvas.getHeight(), 
-													 ["Repeat", "session [R]"], 
-													 "blue", 
+	var repeatSessionBoxElements = canvas.drawButton(0.4 * canvas.getWidth(),
+													 0.7 * canvas.getHeight(),
+													 ["Repeat", "session [R]"],
+													 "blue",
 													 0.05 * this.sessionCompleteButtonSize,
-													 function() { hskController.beginSession(); },
+													 function() { controller.beginSession(); },
 													 this.sessionCompleteButtonSize);
-	var newSessionBoxElements = canvas.drawButton(0.6 * canvas.getWidth(), 
-												  0.7 * canvas.getHeight(), 
-												  ["New", "session [N]"], 
-												  "blue", 
+	var newSessionBoxElements = canvas.drawButton(0.6 * canvas.getWidth(),
+												  0.7 * canvas.getHeight(),
+												  ["New", "session [N]"],
+												  "blue",
 												  0.05 * this.sessionCompleteButtonSize,
-												  function() { hskController.newSession(); },
+												  function() { controller.newSession(); },
 												  this.sessionCompleteButtonSize);
 	this.sessionCompleteButtons = [ repeatSessionBoxElements, newSessionBoxElements ];
 	this.hideSessionCompleteButtons();
@@ -31,7 +31,7 @@ CompleteSessionView.prototype.resetSessionCompleteButtons = function()
 	for (var i = 0; i < 2; i++)
 	{
 		this.sessionCompleteButtons[i].box.attr({ stroke: null });
-	}	
+	}
 }
 
 CompleteSessionView.prototype.showSessionCompleteButtons = function()
@@ -39,7 +39,7 @@ CompleteSessionView.prototype.showSessionCompleteButtons = function()
 	for (var i = 0; i < 2; i++)
 	{
 		this.sessionCompleteButtons[i].box.show();
-		this.sessionCompleteButtons[i].text.show();	
+		this.sessionCompleteButtons[i].text.show();
 	}
 }
 
@@ -48,7 +48,7 @@ CompleteSessionView.prototype.hideSessionCompleteButtons = function()
 	for (var i = 0; i < 2; i++)
 	{
 		this.sessionCompleteButtons[i].box.hide();
-		this.sessionCompleteButtons[i].text.hide();	
+		this.sessionCompleteButtons[i].text.hide();
 	}
 }
 
@@ -60,11 +60,11 @@ CompleteSessionView.prototype.displaySessionCompleteMenu = function()
 
 CompleteSessionView.prototype.displaySessionCompleteText = function()
 {
-	return canvas.drawText(0.5 * canvas.getWidth(), 
-						   0.1 * canvas.getHeight(), 
-						   ["Session", "complete!"], 
-						   "Helvetica", 
-						   0.75 * TEXT_SIZE, 
+	return canvas.drawText(0.5 * canvas.getWidth(),
+						   0.1 * canvas.getHeight(),
+						   ["Session", "complete!"],
+						   "Helvetica",
+						   0.75 * TEXT_SIZE,
 						   "pointer");
 }
 

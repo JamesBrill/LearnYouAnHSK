@@ -1,20 +1,20 @@
 var TEXT_SIZE = window.innerWidth / 10;
 var hskWordList = new WordList(1);
-var hskController;
-var hskFlashcardController;
+var controller;
+var flashcardController;
 var canvas;
 
 $(document).ready(function ()
 {
 	var init = function()
 	{
-		canvas = canvas();
+		canvas = createCanvas();
     var flashcardDisplayMode = FlashcardDisplayMode.CHARACTERS_AND_PINYIN;;
-		hskController = controller(interactionController(),
+		controller = createController(createInteractionController(),
 								   new BeginSessionView(),
 								   new CompleteSessionView(),
                    flashcardDisplayMode);
-		hskController.newSession();
+		controller.newSession();
 	}
 
 	if (SVG.supported)

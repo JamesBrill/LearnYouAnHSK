@@ -1,4 +1,4 @@
-var controller = function (interactionController,
+var createController = function (interactionController,
                            beginSessionView,
                            completeSessionView,
                            flashcardDisplayMode) {
@@ -8,7 +8,7 @@ var controller = function (interactionController,
     beginSessionView.resetButtons();
   }
 
-  var hskAnalytics = analytics(hskWordList, flashcardDisplayMode);
+  var hskAnalytics = createAnalytics(hskWordList, flashcardDisplayMode);
   canvas.getBackground().mouseover(function () { resetAnswerBoxes(); });
 
   var displayModeGetter = function () {
@@ -24,18 +24,18 @@ var controller = function (interactionController,
 
   return {
     beginSession : function () {
-      hskAnalytics = analytics(hskWordList, flashcardDisplayMode);
+      hskcreateAnalytics = createAnalytics(hskWordList, flashcardDisplayMode);
       hskAnalytics.reportBeginSession();
       completeSessionView.clear();
       beginSessionView.clear();
       beginSessionView.showCreateNewSessionButton();
-      hskFlashcardController = flashcardController(interactionController, flashcardView);
-      hskFlashcardController.startNewFlashcard();
+      flashcardController = createFlashcardController(interactionController, flashcardView);
+      flashcardController.startNewFlashcard();
     },
     completeSession : function () {
       hskAnalytics.reportCompleteSession();
       flashcardView.clear();
-      hskFlashcardController = null;
+      flashcardController = null;
       interactionController.beginAwaitingSessionCompleteKey();
       completeSessionView.displaySessionCompleteMenu();
     },
@@ -43,7 +43,7 @@ var controller = function (interactionController,
       beginSessionView.clear();
       beginSessionView.hideCreateNewSessionButton();
       flashcardView.clear();
-      hskFlashcardController = null;
+      flashcardController = null;
       completeSessionView.clear();
       beginSessionView.displayBeginSessionMenu();
     }

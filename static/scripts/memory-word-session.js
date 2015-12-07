@@ -1,4 +1,4 @@
-function MemoryWordSession() 
+function MemoryWordSession()
 {
 	this.currentWord;
 	this.easyWords = [];
@@ -10,10 +10,10 @@ MemoryWordSession.prototype.updateMemoryWords = function()
 {
 	if (this.hardWords.length == 0)
 	{
-		hskController.completeSession();
+		controller.completeSession();
 		return "SessionComplete";
 	}
-	this.setHardWord();	
+	this.setHardWord();
 }
 
 MemoryWordSession.prototype.setHardWord = function()

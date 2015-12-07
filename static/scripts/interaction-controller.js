@@ -1,4 +1,4 @@
-var interactionController = function () {
+var createInteractionController = function () {
   var SPACEBAR = 32;
   var Q = 113;
   var W = 119;
@@ -8,7 +8,7 @@ var interactionController = function () {
   var spacebarHandler = function (e) {
     var code = e.keyCode || e.which;
     if (code == SPACEBAR) {
-      hskFlashcardController.revealAnswer();
+      flashcardController.revealAnswer();
     }
     else {
       handleDifficultyKey(code);
@@ -27,20 +27,20 @@ var interactionController = function () {
 
   var handleDifficultyKey = function (code) {
     if (code == Q) {
-      hskFlashcardController.markFlashcardAsEasy();
-      hskFlashcardController.startNewFlashcard();
+      flashcardController.markFlashcardAsEasy();
+      flashcardController.startNewFlashcard();
     }
     else if (code == W) {
-      hskFlashcardController.startNewFlashcard();
+      flashcardController.startNewFlashcard();
     }
   }
 
   var handleSessionCompleteKey = function (code) {
     if (code == R) {
-      hskController.beginSession();
+      controller.beginSession();
     }
     else if (code == N) {
-      hskController.newSession();
+      controller.newSession();
     }
   }
 

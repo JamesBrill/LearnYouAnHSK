@@ -39,21 +39,21 @@ var createFlashcardView = function (displayModeGetter) {
                          "green",
                          0.15 * answerBoxSize,
                          function() {
-                           hskFlashcardController.markFlashcardAsEasy();
-                           hskFlashcardController.startNewFlashcard();
+                           flashcardController.markFlashcardAsEasy();
+                           flashcardController.startNewFlashcard();
                          });
     var showAnswerBoxElements = drawAnswerBox(0.5 * canvas.getWidth(),
                              height,
                              ["Show answer", "[Space]"],
                              "gray",
                              0.05 * answerBoxSize,
-                             function() { hskFlashcardController.revealAnswer(); });
+                             function() { flashcardController.revealAnswer(); });
     var hardBoxElements = drawAnswerBox(0.7 * canvas.getWidth(),
                          height,
                          ["Not easy [W]"],
                          "red",
                          0.15 * answerBoxSize,
-                         function() { hskFlashcardController.startNewFlashcard(); });
+                         function() { flashcardController.startNewFlashcard(); });
     answerBoxes = [ easyBoxElements, showAnswerBoxElements, hardBoxElements ];
   }
 

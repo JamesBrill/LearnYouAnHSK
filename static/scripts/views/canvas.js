@@ -1,4 +1,4 @@
-var canvas = function () {
+var createCanvas = function () {
   $('#drawing').height("98vh");
   var width = $('#drawing').width();
   var height = $('#drawing').height();
@@ -11,7 +11,7 @@ var canvas = function () {
     box.fill(colour);
     box.radius(0.05 * size);
     box.click(clickHandler);
-    box.mouseover(function() {    
+    box.mouseover(function() {
       var stroke = box.attr("stroke");
       if (stroke != "yellow") {
         box.attr({ stroke: "white", "stroke-width": 0.03 * size });
@@ -19,7 +19,7 @@ var canvas = function () {
     }.bind(this));
     box.attr({ cursor: "pointer" });
 
-    var textOffset, textSize; 
+    var textOffset, textSize;
     switch (text.length) {
       case 1:
         textOffset = 0.15 * size;
@@ -44,13 +44,13 @@ var canvas = function () {
       size: textSize,
       anchor: "middle",
       class: "disable_text_highlighting",
-      cursor: "pointer" 
-    }); 
-    text.click(clickHandler); 
+      cursor: "pointer"
+    });
+    text.click(clickHandler);
     return { box: box, text: text };
   }
 
-  var drawText = function (x, y, text, font, fontSize, cursor) {      
+  var drawText = function (x, y, text, font, fontSize, cursor) {
     var text = draw.text(function(add) {
       if ($.isArray(text)) {
           for (var i = 0; i < text.length; i++) {
@@ -68,8 +68,8 @@ var canvas = function () {
       size: fontSize,
       anchor: "middle",
       class: "disable_text_highlighting",
-      cursor: cursor || "default"  
-    }); 
+      cursor: cursor || "default"
+    });
     return text;
   }
 
@@ -89,7 +89,7 @@ var canvas = function () {
         }.bind(this, i);
         var radioButton = drawRadioButton(x, topY, colour, texts[i], clickHandler, size);
         radioButtons.buttons.push(radioButton);
-        x += 2 * size; 
+        x += 2 * size;
       }
       radioButtons.select(0);
       radioButtons.buttonsSelected = 1;
@@ -101,12 +101,12 @@ var canvas = function () {
       box.fill(colour);
       box.radius(0.05 * size);
       box.click(clickHandler);
-      box.mouseover(function() {    
+      box.mouseover(function() {
         box.attr({ stroke: "white", "stroke-width": 0.03 * size });
       }.bind(this));
       box.attr({ cursor: "pointer" });
 
-      var text = drawText(x, y + offset, text, "Helvetica", 0.15 * size, "pointer") 
+      var text = drawText(x, y + offset, text, "Helvetica", 0.15 * size, "pointer")
       text.click(clickHandler);
       return { box: box, text: text };
     },

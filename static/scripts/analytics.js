@@ -1,4 +1,4 @@
-var analytics = function (sessionWordList, sessionDisplayMode) {
+var createAnalytics = function (sessionWordList, sessionDisplayMode) {
   var getHskWordListForAnalytics = function () {
     var hsk1Active = sessionWordList.isHskVersionActive(1);
     var hsk2Active = sessionWordList.isHskVersionActive(2);
