@@ -1,5 +1,4 @@
 var controller = function (interactionController,
-                           flashcardView,
                            beginSessionView,
                            completeSessionView,
                            flashcardDisplayMode) {
@@ -20,7 +19,7 @@ var controller = function (interactionController,
     flashcardDisplayMode = value;
   }
 
-  flashcardView.init(displayModeGetter);
+  var flashcardView = createFlashcardView(displayModeGetter);
   beginSessionView.init(displayModeSetter);
 
   return {

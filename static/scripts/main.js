@@ -11,7 +11,6 @@ $(document).ready(function ()
 		canvas = canvas();
     var flashcardDisplayMode = FlashcardDisplayMode.CHARACTERS_AND_PINYIN;;
 		hskController = controller(interactionController(),
-								   new FlashcardView(),
 								   new BeginSessionView(),
 								   new CompleteSessionView(),
                    flashcardDisplayMode);
