@@ -25,7 +25,7 @@ var createBeginSessionView = function (displayModeSetter) {
                ["Create", "new session"],
                "green",
                0.05 * radioButtonSize,
-               function() { controller.newSession(); },
+               function () { controller.newSession(); },
                radioButtonSize);
   var hskRadioButtonSetSize = 3 * radioButtonSize;
   var wordListText = canvas.drawText(0.5 * canvas.getWidth(), topY, "Word lists", "Helvetica", textSize);
@@ -40,8 +40,8 @@ var createBeginSessionView = function (displayModeSetter) {
                            "blue",
                            [["HSK 1"], ["HSK 2"]],
                            [
-                               function() { hskWordList.toggleHskVersion(1); },
-                               function() { hskWordList.toggleHskVersion(2); }
+                               function () { hskWordList.toggleHskVersion(1); },
+                               function () { hskWordList.toggleHskVersion(2); }
                            ],
                            radioButtonSize);
   var testTypeRadioButtonSetSize = 7 * radioButtonSize;
@@ -61,10 +61,10 @@ var createBeginSessionView = function (displayModeSetter) {
                             "blue",
                             [["Characters +", "Pinyin"], ["Characters"], ["Pinyin"], ["English", "Translation"]],
                             [
-                              function() { displayModeSetter(FlashcardDisplayMode.CHARACTERS_AND_PINYIN); },
-                              function() { displayModeSetter(FlashcardDisplayMode.CHARACTERS); },
-                              function() { displayModeSetter(FlashcardDisplayMode.PINYIN); },
-                              function() { displayModeSetter(FlashcardDisplayMode.ENGLISH); }
+                              function () { displayModeSetter(FlashcardDisplayMode.CHARACTERS_AND_PINYIN); },
+                              function () { displayModeSetter(FlashcardDisplayMode.CHARACTERS); },
+                              function () { displayModeSetter(FlashcardDisplayMode.PINYIN); },
+                              function () { displayModeSetter(FlashcardDisplayMode.ENGLISH); }
                             ],
                             radioButtonSize);
   var beginSessionButton = canvas.drawButton(0.5 * canvas.getWidth(),
@@ -72,7 +72,7 @@ var createBeginSessionView = function (displayModeSetter) {
                ["Begin session"],
                "green",
                0.15 * radioButtonSize,
-               function() { controller.beginSession(); },
+               function () { controller.beginSession(); },
                radioButtonSize);
   clear();
   hideCreateNewSessionButton();
