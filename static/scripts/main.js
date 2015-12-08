@@ -10,9 +10,7 @@ $(document).ready(function ()
 	{
 		canvas = createCanvas();
     var flashcardDisplayMode = FlashcardDisplayMode.CHARACTERS_AND_PINYIN;;
-		controller = createController(createInteractionController(),
-								   new CompleteSessionView(),
-                   flashcardDisplayMode);
+		controller = createController(createInteractionController(), flashcardDisplayMode);
 		controller.newSession();
 	}
 

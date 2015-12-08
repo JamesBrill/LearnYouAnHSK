@@ -1,6 +1,4 @@
-var createController = function (interactionController,
-                           completeSessionView,
-                           flashcardDisplayMode) {
+var createController = function (interactionController, flashcardDisplayMode) {
   var resetAnswerBoxes = function () {
     completeSessionView.resetSessionCompleteButtons();
     flashcardView.resetAnswerBoxes();
@@ -20,6 +18,7 @@ var createController = function (interactionController,
 
   var flashcardView = createFlashcardView(displayModeGetter);
   var beginSessionView = createBeginSessionView(displayModeSetter);
+  var completeSessionView = createCompleteSessionView();
 
   return {
     beginSession : function () {
