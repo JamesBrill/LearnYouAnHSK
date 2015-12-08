@@ -1,5 +1,4 @@
 var createController = function (interactionController,
-                           beginSessionView,
                            completeSessionView,
                            flashcardDisplayMode) {
   var resetAnswerBoxes = function () {
@@ -20,7 +19,7 @@ var createController = function (interactionController,
   }
 
   var flashcardView = createFlashcardView(displayModeGetter);
-  beginSessionView.init(displayModeSetter);
+  var beginSessionView = createBeginSessionView(displayModeSetter);
 
   return {
     beginSession : function () {
