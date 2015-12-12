@@ -1,5 +1,5 @@
 var TEXT_SIZE = window.innerWidth / 10;
-var hskWordList = new WordList(1);
+var hskWordList = createWordList(1);
 var controller;
 var flashcardController;
 var canvas;
