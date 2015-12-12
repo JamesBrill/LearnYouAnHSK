@@ -1,7 +1,7 @@
-var createBeginSessionView = function (displayModeSetter) {
-  var textSize = 0.25 * TEXT_SIZE;
+var createBeginSessionView = function (displayModeSetter, globalTextSize) {
+  var textSize = 0.25 * globalTextSize;
   var underlineThickness = textSize / 20;
-  var radioButtonSize = TEXT_SIZE;
+  var radioButtonSize = globalTextSize;
   var topY = 0.1 * canvas.getHeight();
 
   var clear = function () {

@@ -1,11 +1,11 @@
-var createCompleteSessionView = function () {
+var createCompleteSessionView = function (textSize) {
   var sessionCompleteText = canvas.drawText(0.5 * canvas.getWidth(),
                0.1 * canvas.getHeight(),
                ["Session", "complete!"],
                "Helvetica",
-               0.75 * TEXT_SIZE,
+               0.75 * textSize,
                "pointer");
-  var sessionCompleteButtonSize = 1.2 * TEXT_SIZE;
+  var sessionCompleteButtonSize = 1.2 * textSize;
   var repeatSessionBoxElements = canvas.drawButton(0.4 * canvas.getWidth(),
                            0.7 * canvas.getHeight(),
                            ["Repeat", "session [R]"],
