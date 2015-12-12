@@ -1,4 +1,4 @@
-var createInteractionController = function () {
+var createInteractionController = function (scope) {
   var SPACEBAR = 32;
   var Q = 113;
   var W = 119;
@@ -8,7 +8,7 @@ var createInteractionController = function () {
   var spacebarHandler = function (e) {
     var code = e.keyCode || e.which;
     if (code == SPACEBAR) {
-      flashcardController.revealAnswer();
+      scope.showAnswer();
     }
     else {
       handleDifficultyKey(code);
@@ -27,11 +27,10 @@ var createInteractionController = function () {
 
   var handleDifficultyKey = function (code) {
     if (code == Q) {
-      flashcardController.markFlashcardAsEasy();
-      flashcardController.startNewFlashcard();
+      scope.markEasy();
     }
     else if (code == W) {
-      flashcardController.startNewFlashcard();
+      scope.markHard();
     }
   }
 
@@ -56,6 +55,9 @@ var createInteractionController = function () {
     beginAwaitingSessionCompleteKey : function () {
       $(document).off();
       $(document).keypress(sessionCompleteKeyHandler);
+    },
+    disable : function () {
+      $(document).off();
     }
   };
 }

@@ -1,4 +1,4 @@
-var createController = function (interactionController, flashcardDisplayMode, textSize) {
+var createController = function (flashcardDisplayMode, textSize) {
   var scope = {
     getDisplayMode : function () {
       return flashcardDisplayMode;
@@ -11,6 +11,9 @@ var createController = function (interactionController, flashcardDisplayMode, te
   var hskAnalytics = createAnalytics(hskWordList, flashcardDisplayMode);
   var beginSessionView = createBeginSessionView(scope.setDisplayMode, textSize);
   var completeSessionView = createCompleteSessionView(textSize);
+
+  var interactionController = createInteractionController(scope);
+  var flashcardController;
 
   var resetAnswerBoxes = function () {
     completeSessionView.resetSessionCompleteButtons();
@@ -46,6 +49,7 @@ var createController = function (interactionController, flashcardDisplayMode, te
       if (flashcardController) {
         flashcardController.clear();
       }
+      interactionController.disable();
       completeSessionView.clear();
       beginSessionView.displayBeginSessionMenu();
     }
