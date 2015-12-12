@@ -1,4 +1,4 @@
-var createFlashcardView = function (displayModeGetter, textSize) {
+var createFlashcardView = function (scope, textSize) {
   var question;
   var answer;
   var flashcardTop = 0.1 * canvas.getHeight();
@@ -38,22 +38,19 @@ var createFlashcardView = function (displayModeGetter, textSize) {
                          ["Too easy [Q]"],
                          "green",
                          0.15 * answerBoxSize,
-                         function() {
-                           flashcardController.markFlashcardAsEasy();
-                           flashcardController.startNewFlashcard();
-                         });
+                         scope.markEasy);
     var showAnswerBoxElements = drawAnswerBox(0.5 * canvas.getWidth(),
                              height,
                              ["Show answer", "[Space]"],
                              "gray",
                              0.05 * answerBoxSize,
-                             function() { flashcardController.revealAnswer(); });
+                             scope.showAnswer);
     var hardBoxElements = drawAnswerBox(0.7 * canvas.getWidth(),
                          height,
                          ["Not easy [W]"],
                          "red",
                          0.15 * answerBoxSize,
-                         function() { flashcardController.startNewFlashcard(); });
+                         scope.markHard);
     answerBoxes = [ easyBoxElements, showAnswerBoxElements, hardBoxElements ];
   }
 
@@ -82,7 +79,7 @@ var createFlashcardView = function (displayModeGetter, textSize) {
   }
 
   var answerBoxSize = 1.2 * textSize;
-  if (displayModeGetter() == FlashcardDisplayMode.CHARACTERS_AND_PINYIN) {
+  if (scope.getDisplayMode() == FlashcardDisplayMode.CHARACTERS_AND_PINYIN) {
     initAnswerBoxes(flashcardTop + 3.6 * textSize);
   }
   else {
@@ -93,7 +90,7 @@ var createFlashcardView = function (displayModeGetter, textSize) {
 
   return {
     displayQuestion : function (memoryWord) {
-      switch (displayModeGetter()) {
+      switch (scope.getDisplayMode()) {
         case FlashcardDisplayMode.CHARACTERS:
           question = drawChinese(memoryWord.characters, flashcardTop);
           break;
@@ -116,7 +113,7 @@ var createFlashcardView = function (displayModeGetter, textSize) {
       if (answer && answer.length() != 0) {
         return;
       }
-      switch (displayModeGetter()) {
+      switch (scope.getDisplayMode()) {
         case FlashcardDisplayMode.CHARACTERS:
         case FlashcardDisplayMode.PINYIN:
           answer = drawEnglish(memoryWord.meaning, flashcardTop + 1.2 * textSize);
