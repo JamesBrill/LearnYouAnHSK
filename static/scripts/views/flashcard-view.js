@@ -1,4 +1,4 @@
-var createFlashcardView = function (scope, textSize) {
+var createFlashcardView = function (scope, canvas, textSize) {
   var question;
   var answer;
   var flashcardTop = 0.1 * canvas.getHeight();

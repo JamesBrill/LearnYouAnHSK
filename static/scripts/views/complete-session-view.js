@@ -1,4 +1,4 @@
-var createCompleteSessionView = function (scope, textSize) {
+var createCompleteSessionView = function (scope, canvas, textSize) {
   var sessionCompleteText = canvas.drawText(0.5 * canvas.getWidth(),
                0.1 * canvas.getHeight(),
                ["Session", "complete!"],

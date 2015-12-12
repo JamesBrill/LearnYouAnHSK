@@ -1,4 +1,4 @@
-var createBeginSessionView = function (scope, globalTextSize) {
+var createBeginSessionView = function (scope, canvas, globalTextSize) {
   var textSize = 0.25 * globalTextSize;
   var underlineThickness = textSize / 20;
   var radioButtonSize = globalTextSize;
