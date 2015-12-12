@@ -76,7 +76,7 @@ var createCanvas = function () {
   return {
     drawRadioButtons : function (multiselect, leftX, topY, colour, texts, clickHandlers, size) {
       var x = leftX;
-      var radioButtons = new RadioButtons(0.03 * size);
+      var radioButtons = createRadioButtons(0.03 * size);
       for (var i = 0; i < texts.length; i++) {
         var clickHandler = function(i) {
           if (multiselect) {
@@ -88,11 +88,10 @@ var createCanvas = function () {
           }
         }.bind(this, i);
         var radioButton = drawRadioButton(x, topY, colour, texts[i], clickHandler, size);
-        radioButtons.buttons.push(radioButton);
+        radioButtons.addButton(radioButton);
         x += 2 * size;
       }
       radioButtons.select(0);
-      radioButtons.buttonsSelected = 1;
       return radioButtons;
     },
     drawButton : function (x, y, text, colour, offset, clickHandler, size) {
