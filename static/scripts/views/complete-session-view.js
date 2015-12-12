@@ -1,4 +1,4 @@
-var createCompleteSessionView = function (textSize) {
+var createCompleteSessionView = function (scope, textSize) {
   var sessionCompleteText = canvas.drawText(0.5 * canvas.getWidth(),
                0.1 * canvas.getHeight(),
                ["Session", "complete!"],
@@ -11,14 +11,14 @@ var createCompleteSessionView = function (textSize) {
                            ["Repeat", "session [R]"],
                            "blue",
                            0.05 * sessionCompleteButtonSize,
-                           function () { controller.beginSession(); },
+                           function () { scope.beginSession(); },
                            sessionCompleteButtonSize);
   var newSessionBoxElements = canvas.drawButton(0.6 * canvas.getWidth(),
                           0.7 * canvas.getHeight(),
                           ["New", "session [N]"],
                           "blue",
                           0.05 * sessionCompleteButtonSize,
-                          function () { controller.newSession(); },
+                          function () { scope.newSession(); },
                           sessionCompleteButtonSize);
   var sessionCompleteButtons = [ repeatSessionBoxElements, newSessionBoxElements ];
 

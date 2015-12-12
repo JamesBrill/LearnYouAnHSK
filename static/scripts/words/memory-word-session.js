@@ -1,11 +1,11 @@
-var createMemoryWordSession = function () {
+var createMemoryWordSession = function (scope) {
   var currentWord;
   var easyWords = [];
   var hardWords = [];
 
   var updateMemoryWords = function () {
     if (hardWords.length == 0) {
-      controller.completeSession();
+      scope.completeSession();
       return "SessionComplete";
     }
     setHardWord();

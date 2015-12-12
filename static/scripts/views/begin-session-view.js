@@ -1,4 +1,4 @@
-var createBeginSessionView = function (displayModeSetter, globalTextSize) {
+var createBeginSessionView = function (scope, globalTextSize) {
   var textSize = 0.25 * globalTextSize;
   var underlineThickness = textSize / 20;
   var radioButtonSize = globalTextSize;
@@ -25,7 +25,7 @@ var createBeginSessionView = function (displayModeSetter, globalTextSize) {
                ["Create", "new session"],
                "green",
                0.05 * radioButtonSize,
-               function () { controller.newSession(); },
+               function () { scope.newSession(); },
                radioButtonSize);
   var hskRadioButtonSetSize = 3 * radioButtonSize;
   var wordListText = canvas.drawText(0.5 * canvas.getWidth(), topY, "Word lists", "Helvetica", textSize);
@@ -61,10 +61,10 @@ var createBeginSessionView = function (displayModeSetter, globalTextSize) {
                             "blue",
                             [["Characters +", "Pinyin"], ["Characters"], ["Pinyin"], ["English", "Translation"]],
                             [
-                              function () { displayModeSetter(FlashcardDisplayMode.CHARACTERS_AND_PINYIN); },
-                              function () { displayModeSetter(FlashcardDisplayMode.CHARACTERS); },
-                              function () { displayModeSetter(FlashcardDisplayMode.PINYIN); },
-                              function () { displayModeSetter(FlashcardDisplayMode.ENGLISH); }
+                              function () { scope.setDisplayMode(FlashcardDisplayMode.CHARACTERS_AND_PINYIN); },
+                              function () { scope.setDisplayMode(FlashcardDisplayMode.CHARACTERS); },
+                              function () { scope.setDisplayMode(FlashcardDisplayMode.PINYIN); },
+                              function () { scope.setDisplayMode(FlashcardDisplayMode.ENGLISH); }
                             ],
                             radioButtonSize);
   var beginSessionButton = canvas.drawButton(0.5 * canvas.getWidth(),
@@ -72,7 +72,7 @@ var createBeginSessionView = function (displayModeSetter, globalTextSize) {
                ["Begin session"],
                "green",
                0.15 * radioButtonSize,
-               function () { controller.beginSession(); },
+               function () { scope.beginSession(); },
                radioButtonSize);
   clear();
   hideCreateNewSessionButton();

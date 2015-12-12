@@ -36,10 +36,10 @@ var createInteractionController = function (scope) {
 
   var handleSessionCompleteKey = function (code) {
     if (code == R) {
-      controller.beginSession();
+      scope.beginSession();
     }
     else if (code == N) {
-      controller.newSession();
+      scope.newSession();
     }
   }
 
