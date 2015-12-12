@@ -1,5 +1,3 @@
-var wordList = createWordList(1);
-
 $(document).ready(function () {
   var init = function () {
     var flashcardDisplayMode = FlashcardDisplayMode.CHARACTERS_AND_PINYIN;

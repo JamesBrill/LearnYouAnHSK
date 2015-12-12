@@ -1,4 +1,4 @@
-var createFlashcardController = function (scope, canvas, interactionController, textSize) {
+var createFlashcardController = function (scope, canvas, interactionController, wordList, textSize) {
   var flashcardView;
 
   var startNewFlashcard = function () {
@@ -38,7 +38,7 @@ var createFlashcardController = function (scope, canvas, interactionController, 
 
   flashcardView = createFlashcardView(scope, canvas, textSize);
 
-  var memoryWordSession = createMemoryWordSession(scope);
+  var memoryWordSession = createMemoryWordSession(scope, wordList);
   var wordsInitialised = memoryWordSession.initWords();
   wordsInitialised.then(function () {
     var remainingCards = memoryWordSession.numberOfRemainingCards();

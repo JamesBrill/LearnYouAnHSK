@@ -12,13 +12,20 @@ var createController = function (flashcardDisplayMode, textSize) {
   var canvas = createCanvas();
   canvas.getBackground().mouseover(function () { resetAnswerBoxes(); });
 
+  var wordList = createWordList(1);
+  var hskAnalytics = createAnalytics(wordList, flashcardDisplayMode);
+
   var beginSession = function () {
     hskAnalytics = createAnalytics(wordList, flashcardDisplayMode);
     hskAnalytics.reportBeginSession();
     completeSessionView.clear();
     beginSessionView.clear();
     beginSessionView.showCreateNewSessionButton();
-    flashcardController = createFlashcardController(scope, canvas, interactionController, textSize);
+    flashcardController = createFlashcardController(scope,
+                                                    canvas,
+                                                    interactionController,
+                                                    wordList,
+                                                    textSize);
     flashcardController.startNewFlashcard();
   }
 
@@ -54,8 +61,7 @@ var createController = function (flashcardDisplayMode, textSize) {
     newSession : newSession
   };
 
-  var hskAnalytics = createAnalytics(wordList, flashcardDisplayMode);
-  var beginSessionView = createBeginSessionView(scope, canvas, textSize);
+  var beginSessionView = createBeginSessionView(scope, canvas, wordList, textSize);
   var completeSessionView = createCompleteSessionView(scope, canvas, textSize);
 
   var interactionController = createInteractionController(scope);

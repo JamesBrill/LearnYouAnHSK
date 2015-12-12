@@ -1,4 +1,4 @@
-var createMemoryWordSession = function (scope) {
+var createMemoryWordSession = function (scope, wordList) {
   var currentWord;
   var easyWords = [];
   var hardWords = [];
