@@ -40,8 +40,8 @@ var createBeginSessionView = function (scope, canvas, globalTextSize) {
                            "blue",
                            [["HSK 1"], ["HSK 2"]],
                            [
-                               function () { hskWordList.toggleHskVersion(1); },
-                               function () { hskWordList.toggleHskVersion(2); }
+                               function () { wordList.toggleHskVersion(1); },
+                               function () { wordList.toggleHskVersion(2); }
                            ],
                            radioButtonSize);
   var testTypeRadioButtonSetSize = 7 * radioButtonSize;

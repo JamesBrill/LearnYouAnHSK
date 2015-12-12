@@ -1,4 +1,4 @@
-var hskWordList = createWordList(1);
+var wordList = createWordList(1);
 
 $(document).ready(function () {
   var init = function () {

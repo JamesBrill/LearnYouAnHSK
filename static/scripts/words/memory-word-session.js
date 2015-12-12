@@ -29,7 +29,7 @@ var createMemoryWordSession = function (scope) {
 
   return {
     initWords : function () {
-      return hskWordList.getWordList().then(function (words) {
+      return wordList.getWordList().then(function (words) {
         hardWords = words;
         updateMemoryWords();
       });

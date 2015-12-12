@@ -13,7 +13,7 @@ var createController = function (flashcardDisplayMode, textSize) {
   canvas.getBackground().mouseover(function () { resetAnswerBoxes(); });
 
   var beginSession = function () {
-    hskAnalytics = createAnalytics(hskWordList, flashcardDisplayMode);
+    hskAnalytics = createAnalytics(wordList, flashcardDisplayMode);
     hskAnalytics.reportBeginSession();
     completeSessionView.clear();
     beginSessionView.clear();
@@ -54,7 +54,7 @@ var createController = function (flashcardDisplayMode, textSize) {
     newSession : newSession
   };
 
-  var hskAnalytics = createAnalytics(hskWordList, flashcardDisplayMode);
+  var hskAnalytics = createAnalytics(wordList, flashcardDisplayMode);
   var beginSessionView = createBeginSessionView(scope, canvas, textSize);
   var completeSessionView = createCompleteSessionView(scope, canvas, textSize);
 
