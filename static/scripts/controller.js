@@ -22,7 +22,7 @@ var createController = function (interactionController, flashcardDisplayMode) {
 
   return {
     beginSession : function () {
-      hskcreateAnalytics = createAnalytics(hskWordList, flashcardDisplayMode);
+      hskAnalytics = createAnalytics(hskWordList, flashcardDisplayMode);
       hskAnalytics.reportBeginSession();
       completeSessionView.clear();
       beginSessionView.clear();
