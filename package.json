@@ -2,10 +2,11 @@
   "name": "LearnYouAnHSK",
   "version": "1.0.0",
   "description": "A flashcard memory tool for HSK exams.",
-  "main": "server.js",
+  "main": "./out/server.js",
   "scripts": {
+    "build": "babel src --out-dir out",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node ./out/server.js"
   },
   "dependencies": {
     "express": "~4.9.x"
@@ -18,7 +19,6 @@
     "node": "0.10.x"
   },
   "devDependencies": {
-    "babel": "^6.3.13",
     "babel-cli": "^6.3.17"
   },
   "author": "James Brill",
