@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var memoryWords = require("./vocabulary/memory-words.json");
+var memoryWords = require("../vocabulary/memory-words.json");
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/static'));
