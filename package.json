@@ -5,6 +5,7 @@
   "main": "./out/server.js",
   "scripts": {
     "build": "babel src --out-dir out --ignore src/static/scripts/lib",
+    "watch": "babel --watch src --out-dir out --ignore src/static/scripts/lib",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./out/server.js"
   },
