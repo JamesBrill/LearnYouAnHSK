@@ -18,6 +18,7 @@
     "node": "0.10.x"
   },
   "devDependencies": {
+    "babel": "^6.3.13",
     "babel-cli": "^6.3.17"
   },
   "author": "James Brill",
