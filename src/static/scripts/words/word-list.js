@@ -1,8 +1,8 @@
-var createWordList = function (initialHskVersion) {
-  var activeHskVersions = [];
+let createWordList = function (initialHskVersion) {
+  let activeHskVersions = [];
   activeHskVersions[initialHskVersion] = true;
 
-  var isHskVersionActive = function (versionNumber) {
+  let isHskVersionActive = function (versionNumber) {
     return activeHskVersions[versionNumber];
   }
 
@@ -12,8 +12,8 @@ var createWordList = function (initialHskVersion) {
     },
     isHskVersionActive : isHskVersionActive,
     getWordList : function () {
-      var requestedVersions = '';
-      for (var version in activeHskVersions) {
+      let requestedVersions = '';
+      for (let version in activeHskVersions) {
         if (isHskVersionActive(version)) {
           requestedVersions += version + ',';
         }

@@ -1,51 +1,51 @@
-var createFlashcardView = function (scope, canvas, textSize) {
-  var question;
-  var answer;
-  var flashcardTop = 0.1 * canvas.getHeight();
-  var answerBoxes;
-  var discardedCounter = canvas.drawText(0.1 * canvas.getWidth(),
+let createFlashcardView = function (scope, canvas, textSize) {
+  let question;
+  let answer;
+  let flashcardTop = 0.1 * canvas.getHeight();
+  let answerBoxes;
+  let discardedCounter = canvas.drawText(0.1 * canvas.getWidth(),
                                          0.4 * canvas.getHeight(),
                                          "Discarded: 0",
                                          "Helvetica",
                                          0.25 * textSize);
-  var remainingCounter = canvas.drawText(0.1 * canvas.getWidth(),
+  let remainingCounter = canvas.drawText(0.1 * canvas.getWidth(),
                                          0.5 * canvas.getHeight(),
                                          "Remaining: 0",
                                          "Helvetica",
                                          0.25 * textSize);
 
-  var showAnswerBoxes = function () {
-    for (var i = 0; i < 3; i++) {
+  let showAnswerBoxes = function () {
+    for (let i = 0; i < 3; i++) {
       answerBoxes[i].box.show();
       answerBoxes[i].text.show();
     }
   }
 
-  var hideAnswerBoxes = function () {
-    for (var i = 0; i < 3; i++) {
+  let hideAnswerBoxes = function () {
+    for (let i = 0; i < 3; i++) {
       answerBoxes[i].box.hide();
       answerBoxes[i].text.hide();
     }
   }
 
-  var drawAnswerBox = function (x, y, text, colour, offset, clickHandler) {
+  let drawAnswerBox = function (x, y, text, colour, offset, clickHandler) {
     return canvas.drawButton(x, y, text, colour, offset, clickHandler, answerBoxSize);
   }
 
-  var initAnswerBoxes = function (height) {
-    var easyBoxElements = drawAnswerBox(0.3 * canvas.getWidth(),
+  let initAnswerBoxes = function (height) {
+    let easyBoxElements = drawAnswerBox(0.3 * canvas.getWidth(),
                          height,
                          ["Too easy [Q]"],
                          "green",
                          0.15 * answerBoxSize,
                          scope.markEasy);
-    var showAnswerBoxElements = drawAnswerBox(0.5 * canvas.getWidth(),
+    let showAnswerBoxElements = drawAnswerBox(0.5 * canvas.getWidth(),
                              height,
                              ["Show answer", "[Space]"],
                              "gray",
                              0.05 * answerBoxSize,
                              scope.showAnswer);
-    var hardBoxElements = drawAnswerBox(0.7 * canvas.getWidth(),
+    let hardBoxElements = drawAnswerBox(0.7 * canvas.getWidth(),
                          height,
                          ["Not easy [W]"],
                          "red",
@@ -54,21 +54,21 @@ var createFlashcardView = function (scope, canvas, textSize) {
     answerBoxes = [ easyBoxElements, showAnswerBoxElements, hardBoxElements ];
   }
 
-  var drawChinese = function (chinese, height) {
+  let drawChinese = function (chinese, height) {
     return canvas.drawText(0.5 * canvas.getWidth(), height, chinese, "SimHei", textSize);
   }
 
-  var drawEnglish = function (english, height) {
-    var englishSize = (english.length > 15) ? 0.5 * textSize : 0.75 * textSize;
+  let drawEnglish = function (english, height) {
+    let englishSize = (english.length > 15) ? 0.5 * textSize : 0.75 * textSize;
     return canvas.drawText(0.5 * canvas.getWidth(), height, english, "Helvetica", englishSize);
   }
 
-  var hideCounters = function () {
+  let hideCounters = function () {
     discardedCounter.hide();
     remainingCounter.hide();
   };
 
-  var clearFlashcard = function () {
+  let clearFlashcard = function () {
     if (question != undefined) {
       question.clear();
     }
@@ -78,7 +78,7 @@ var createFlashcardView = function (scope, canvas, textSize) {
     }
   }
 
-  var answerBoxSize = 1.2 * textSize;
+  let answerBoxSize = 1.2 * textSize;
   if (scope.getDisplayMode() == FlashcardDisplayMode.CHARACTERS_AND_PINYIN) {
     initAnswerBoxes(flashcardTop + 3.6 * textSize);
   }
@@ -144,7 +144,7 @@ var createFlashcardView = function (scope, canvas, textSize) {
       remainingCounter.text("Remaining: " + remainingCards);
     },
     resetAnswerBoxes : function () {
-      for (var i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
         answerBoxes[i].box.attr({ stroke: null });
       }
     }

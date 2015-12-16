@@ -1,7 +1,7 @@
-var createAnalytics = function (sessionWordList, sessionDisplayMode) {
-  var getHskWordListForAnalytics = function () {
-    var hsk1Active = sessionWordList.isHskVersionActive(1);
-    var hsk2Active = sessionWordList.isHskVersionActive(2);
+let createAnalytics = function (sessionWordList, sessionDisplayMode) {
+  let getHskWordListForAnalytics = function () {
+    let hsk1Active = sessionWordList.isHskVersionActive(1);
+    let hsk2Active = sessionWordList.isHskVersionActive(2);
     if (hsk1Active && hsk2Active) {
       return "HSK_1_and_2";
     }
@@ -11,7 +11,7 @@ var createAnalytics = function (sessionWordList, sessionDisplayMode) {
     return "HSK_2";
   }
 
-  var getDisplayModeForAnalytics = function () {
+  let getDisplayModeForAnalytics = function () {
     switch (sessionDisplayMode) {
       case FlashcardDisplayMode.CHARACTERS :
         return "Characters";
@@ -24,13 +24,13 @@ var createAnalytics = function (sessionWordList, sessionDisplayMode) {
     }
   }
 
-  var reportSessionEvent = function (action) {
+  let reportSessionEvent = function (action) {
     ga('send', 'event', 'sessions', action, sessionWordListName);
     ga('send', 'event', 'sessions', action, sessionDisplayModeName);
   }
 
-  var sessionWordListName = getHskWordListForAnalytics();
-  var sessionDisplayModeName = getDisplayModeForAnalytics();
+  let sessionWordListName = getHskWordListForAnalytics();
+  let sessionDisplayModeName = getDisplayModeForAnalytics();
 
   return {
     reportBeginSession : function () {

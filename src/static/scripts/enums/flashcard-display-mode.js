@@ -1,4 +1,4 @@
-var FlashcardDisplayMode = {
+let FlashcardDisplayMode = {
   CHARACTERS : 0,
   PINYIN : 1,
   ENGLISH : 2,

@@ -1,9 +1,9 @@
-var createMemoryWordSession = function (scope, wordList) {
-  var currentWord;
-  var easyWords = [];
-  var hardWords = [];
+let createMemoryWordSession = function (scope, wordList) {
+  let currentWord;
+  let easyWords = [];
+  let hardWords = [];
 
-  var updateMemoryWords = function () {
+  let updateMemoryWords = function () {
     if (hardWords.length == 0) {
       scope.completeSession();
       return "SessionComplete";
@@ -11,14 +11,14 @@ var createMemoryWordSession = function (scope, wordList) {
     setHardWord();
   }
 
-  var setHardWord = function () {
-    var index;
-    var currentWordHardListIndex = $.inArray(currentWord, hardWords);
+  let setHardWord = function () {
+    let index;
+    let currentWordHardListIndex = $.inArray(currentWord, hardWords);
     if (currentWordHardListIndex != -1 && hardWords.length > 1) {
-      var copyList = hardWords.slice(0);
+      let copyList = hardWords.slice(0);
       copyList.splice(currentWordHardListIndex, 1);
-      var copyIndex = Math.floor(Math.random() * copyList.length);
-      var cardChosenFromCopyList = copyList[copyIndex];
+      let copyIndex = Math.floor(Math.random() * copyList.length);
+      let cardChosenFromCopyList = copyList[copyIndex];
       index = $.inArray(cardChosenFromCopyList, hardWords);
     }
     else {

@@ -1,12 +1,12 @@
-var createInteractionController = function (scope) {
-  var SPACEBAR = 32;
-  var Q = 113;
-  var W = 119;
-  var R = 114;
-  var N = 110;
+let createInteractionController = function (scope) {
+  const SPACEBAR = 32;
+  const Q = 113;
+  const W = 119;
+  const R = 114;
+  const N = 110;
 
-  var spacebarHandler = function (e) {
-    var code = e.keyCode || e.which;
+  let spacebarHandler = function (e) {
+    let code = e.keyCode || e.which;
     if (code == SPACEBAR) {
       scope.showAnswer();
     }
@@ -15,17 +15,17 @@ var createInteractionController = function (scope) {
     }
   }
 
-  var difficultyKeyHandler = function (e) {
-    var code = e.keyCode || e.which;
+  let difficultyKeyHandler = function (e) {
+    let code = e.keyCode || e.which;
     handleDifficultyKey(code);
   }
 
-  var sessionCompleteKeyHandler = function (e) {
-    var code = e.keyCode || e.which;
+  let sessionCompleteKeyHandler = function (e) {
+    let code = e.keyCode || e.which;
     handleSessionCompleteKey(code);
   }
 
-  var handleDifficultyKey = function (code) {
+  let handleDifficultyKey = function (code) {
     if (code == Q) {
       scope.markEasy();
     }
@@ -34,7 +34,7 @@ var createInteractionController = function (scope) {
     }
   }
 
-  var handleSessionCompleteKey = function (code) {
+  let handleSessionCompleteKey = function (code) {
     if (code == R) {
       scope.beginSession();
     }

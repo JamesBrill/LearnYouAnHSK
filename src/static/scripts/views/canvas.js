@@ -1,26 +1,26 @@
-var createCanvas = function () {
+let createCanvas = function () {
   $('#drawing').height("98vh");
-  var width = $('#drawing').width();
-  var height = $('#drawing').height();
-  var draw = SVG('drawing').size("100%", "100%");
-  var background = draw.rect("100%", "100%");
+  let width = $('#drawing').width();
+  let height = $('#drawing').height();
+  let draw = SVG('drawing').size("100%", "100%");
+  let background = draw.rect("100%", "100%");
 
-  var drawRadioButton = function (x, y, colour, text, clickHandler, size) {
-    var box = draw.rect(size, 0.5 * size);
+  let drawRadioButton = function (x, y, colour, textLines, clickHandler, size) {
+    let box = draw.rect(size, 0.5 * size);
     box.move(x, y);
     box.fill(colour);
     box.radius(0.05 * size);
     box.click(clickHandler);
     box.mouseover(function() {
-      var stroke = box.attr("stroke");
+      let stroke = box.attr("stroke");
       if (stroke != "yellow") {
         box.attr({ stroke: "white", "stroke-width": 0.03 * size });
       }
     }.bind(this));
     box.attr({ cursor: "pointer" });
 
-    var textOffset, textSize;
-    switch (text.length) {
+    let textOffset, textSize;
+    switch (textLines.length) {
       case 1:
         textOffset = 0.15 * size;
         textSize = 0.15 * size;
@@ -32,9 +32,9 @@ var createCanvas = function () {
         break;
     }
 
-    var text = draw.text(function(add) {
-      for (var i = 0; i < text.length; i++) {
-        add.tspan(text[i]).newLine();
+    let text = draw.text(function(add) {
+      for (let i = 0; i < textLines.length; i++) {
+        add.tspan(textLines[i]).newLine();
       }
     });
     text.fill("white");
@@ -50,15 +50,15 @@ var createCanvas = function () {
     return { box: box, text: text };
   }
 
-  var drawText = function (x, y, text, font, fontSize, cursor) {
-    var text = draw.text(function(add) {
-      if ($.isArray(text)) {
-          for (var i = 0; i < text.length; i++) {
-            add.tspan(text[i]).newLine();
+  let drawText = function (x, y, textLines, font, fontSize, cursor) {
+    let text = draw.text(function(add) {
+      if ($.isArray(textLines)) {
+          for (let i = 0; i < textLines.length; i++) {
+            add.tspan(textLines[i]).newLine();
           }
       }
       else {
-        add.tspan(text).newLine();
+        add.tspan(textLines).newLine();
       }
     });
     text.fill("white");
@@ -75,10 +75,10 @@ var createCanvas = function () {
 
   return {
     drawRadioButtons : function (multiselect, leftX, topY, colour, texts, clickHandlers, size) {
-      var x = leftX;
-      var radioButtons = createRadioButtons(0.03 * size);
-      for (var i = 0; i < texts.length; i++) {
-        var clickHandler = function(i) {
+      let x = leftX;
+      let radioButtons = createRadioButtons(0.03 * size);
+      for (let i = 0; i < texts.length; i++) {
+        let clickHandler = function(i) {
           if (multiselect) {
             radioButtons.multiselect(i, clickHandlers[i]);
           }
@@ -87,15 +87,15 @@ var createCanvas = function () {
             clickHandlers[i]();
           }
         }.bind(this, i);
-        var radioButton = drawRadioButton(x, topY, colour, texts[i], clickHandler, size);
+        let radioButton = drawRadioButton(x, topY, colour, texts[i], clickHandler, size);
         radioButtons.addButton(radioButton);
         x += 2 * size;
       }
       radioButtons.select(0);
       return radioButtons;
     },
-    drawButton : function (x, y, text, colour, offset, clickHandler, size) {
-      var box = draw.rect(size, 0.5 * size);
+    drawButton : function (x, y, textLines, colour, offset, clickHandler, size) {
+      let box = draw.rect(size, 0.5 * size);
       box.move(x - 0.5 * size, y);
       box.fill(colour);
       box.radius(0.05 * size);
@@ -105,20 +105,20 @@ var createCanvas = function () {
       }.bind(this));
       box.attr({ cursor: "pointer" });
 
-      var text = drawText(x, y + offset, text, "Helvetica", 0.15 * size, "pointer")
+      let text = drawText(x, y + offset, textLines, "Helvetica", 0.15 * size, "pointer")
       text.click(clickHandler);
       return { box: box, text: text };
     },
     drawText : drawText,
     drawGroup : function (items) {
-      var group = draw.group();
-      for (var i = 0; i < items.length; i++) {
+      let group = draw.group();
+      for (let i = 0; i < items.length; i++) {
         group.add(items[i]);
       }
       return group;
     },
     drawTextUnderline : function (x, y, length, colour, stroke) {
-      var line = draw.rect(length, stroke);
+      let line = draw.rect(length, stroke);
       line.move(x, y);
       line.fill(colour);
       return line;

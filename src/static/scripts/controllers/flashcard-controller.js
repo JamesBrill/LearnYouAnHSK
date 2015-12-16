@@ -1,29 +1,29 @@
-var createFlashcardController = function (scope, canvas, interactionController, wordList, textSize) {
-  var flashcardView;
+let createFlashcardController = function (scope, canvas, interactionController, wordList, textSize) {
+  let flashcardView;
 
-  var startNewFlashcard = function () {
+  let startNewFlashcard = function () {
     wordsInitialised.then(function () {
       flashcardView.clearFlashcard();
       if (memoryWordSession.updateMemoryWords() !== "SessionComplete") {
-        var memoryWord = memoryWordSession.getCurrentWord();
+        let memoryWord = memoryWordSession.getCurrentWord();
         flashcardView.displayQuestion(memoryWord);
         interactionController.beginAwaitingSpacebar();
       }
     });
   }
 
-  var markFlashcardAsEasy = function () {
+  let markFlashcardAsEasy = function () {
     wordsInitialised.then(function () {
       memoryWordSession.markCurrentWordAsEasy();
-      var discardedCards = memoryWordSession.numberOfDiscardedCards();
-      var remainingCards = memoryWordSession.numberOfRemainingCards();
+      let discardedCards = memoryWordSession.numberOfDiscardedCards();
+      let remainingCards = memoryWordSession.numberOfRemainingCards();
       flashcardView.setCounters(discardedCards, remainingCards);
     });
   }
 
-  var revealAnswer = function () {
+  let revealAnswer = function () {
     wordsInitialised.then(function () {
-      var memoryWord = memoryWordSession.getCurrentWord();
+      let memoryWord = memoryWordSession.getCurrentWord();
       flashcardView.displayAnswer(memoryWord);
       interactionController.beginAwaitingDifficultyKey();
     });
@@ -38,10 +38,10 @@ var createFlashcardController = function (scope, canvas, interactionController, 
 
   flashcardView = createFlashcardView(scope, canvas, textSize);
 
-  var memoryWordSession = createMemoryWordSession(scope, wordList);
-  var wordsInitialised = memoryWordSession.initWords();
+  let memoryWordSession = createMemoryWordSession(scope, wordList);
+  let wordsInitialised = memoryWordSession.initWords();
   wordsInitialised.then(function () {
-    var remainingCards = memoryWordSession.numberOfRemainingCards();
+    let remainingCards = memoryWordSession.numberOfRemainingCards();
     flashcardView.setCounters(0, remainingCards);
     flashcardView.showCounters();
   });

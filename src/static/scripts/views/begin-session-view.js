@@ -1,10 +1,10 @@
-var createBeginSessionView = function (scope, canvas, wordList, globalTextSize) {
-  var textSize = 0.25 * globalTextSize;
-  var underlineThickness = textSize / 20;
-  var radioButtonSize = globalTextSize;
-  var topY = 0.1 * canvas.getHeight();
+let createBeginSessionView = function (scope, canvas, wordList, globalTextSize) {
+  let textSize = 0.25 * globalTextSize;
+  let underlineThickness = textSize / 20;
+  let radioButtonSize = globalTextSize;
+  let topY = 0.1 * canvas.getHeight();
 
-  var clear = function () {
+  let clear = function () {
     hskRadioButtons.hide();
     testTypeRadioButtons.hide();
     beginSessionButton.box.hide();
@@ -15,26 +15,26 @@ var createBeginSessionView = function (scope, canvas, wordList, globalTextSize) 
     testTypeTextUnderline.hide();
   }
 
-  var hideCreateNewSessionButton = function () {
+  let hideCreateNewSessionButton = function () {
     createNewSessionButton.box.hide();
     createNewSessionButton.text.hide();
   }
 
-  var createNewSessionButton = canvas.drawButton(0.06 * canvas.getWidth(),
+  let createNewSessionButton = canvas.drawButton(0.06 * canvas.getWidth(),
                0.02 * canvas.getHeight(),
                ["Create", "new session"],
                "green",
                0.05 * radioButtonSize,
                function () { scope.newSession(); },
                radioButtonSize);
-  var hskRadioButtonSetSize = 3 * radioButtonSize;
-  var wordListText = canvas.drawText(0.5 * canvas.getWidth(), topY, "Word lists", "Helvetica", textSize);
-  var wordListTextUnderline = canvas.drawTextUnderline(0.5 * (canvas.getWidth() - 1.1 * hskRadioButtonSetSize),
+  let hskRadioButtonSetSize = 3 * radioButtonSize;
+  let wordListText = canvas.drawText(0.5 * canvas.getWidth(), topY, "Word lists", "Helvetica", textSize);
+  let wordListTextUnderline = canvas.drawTextUnderline(0.5 * (canvas.getWidth() - 1.1 * hskRadioButtonSetSize),
                               topY + 1.4 * textSize,
                               1.1 * hskRadioButtonSetSize,
                               "white",
                               underlineThickness);
-  var hskRadioButtons = canvas.drawRadioButtons(true,
+  let hskRadioButtons = canvas.drawRadioButtons(true,
                            0.5 * (canvas.getWidth() - hskRadioButtonSetSize),
                            topY + 2 * textSize,
                            "blue",
@@ -44,18 +44,18 @@ var createBeginSessionView = function (scope, canvas, wordList, globalTextSize) 
                                function () { wordList.toggleHskVersion(2); }
                            ],
                            radioButtonSize);
-  var testTypeRadioButtonSetSize = 7 * radioButtonSize;
-  var testTypeText = canvas.drawText(0.5 * canvas.getWidth(),
+  let testTypeRadioButtonSetSize = 7 * radioButtonSize;
+  let testTypeText = canvas.drawText(0.5 * canvas.getWidth(),
                     topY + 2 * textSize + radioButtonSize,
                     "Test type",
                     "Helvetica",
                     textSize);
-  var testTypeTextUnderline = canvas.drawTextUnderline(0.5 * (canvas.getWidth() - 1.1 * testTypeRadioButtonSetSize),
+  let testTypeTextUnderline = canvas.drawTextUnderline(0.5 * (canvas.getWidth() - 1.1 * testTypeRadioButtonSetSize),
                               topY + 3.4 * textSize + radioButtonSize,
                               1.1 * testTypeRadioButtonSetSize,
                               "white",
                               underlineThickness);
-  var testTypeRadioButtons = canvas.drawRadioButtons(false,
+  let testTypeRadioButtons = canvas.drawRadioButtons(false,
                             0.5 * (canvas.getWidth() - testTypeRadioButtonSetSize),
                             topY + 4 * textSize + radioButtonSize,
                             "blue",
@@ -67,7 +67,7 @@ var createBeginSessionView = function (scope, canvas, wordList, globalTextSize) 
                               function () { scope.setDisplayMode(FlashcardDisplayMode.ENGLISH); }
                             ],
                             radioButtonSize);
-  var beginSessionButton = canvas.drawButton(0.5 * canvas.getWidth(),
+  let beginSessionButton = canvas.drawButton(0.5 * canvas.getWidth(),
                0.1 * canvas.getHeight() + 3 * radioButtonSize,
                ["Begin session"],
                "green",

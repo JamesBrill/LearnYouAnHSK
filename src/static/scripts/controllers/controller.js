@@ -1,7 +1,7 @@
-var createController = function (flashcardDisplayMode, textSize) {
-  var flashcardController;
+let createController = function (flashcardDisplayMode, textSize) {
+  let flashcardController;
 
-  var resetAnswerBoxes = function () {
+  let resetAnswerBoxes = function () {
     completeSessionView.resetSessionCompleteButtons();
     if (flashcardController) {
       flashcardController.resetAnswerBoxes();
@@ -9,13 +9,13 @@ var createController = function (flashcardDisplayMode, textSize) {
     beginSessionView.resetButtons();
   }
 
-  var canvas = createCanvas();
+  let canvas = createCanvas();
   canvas.getBackground().mouseover(function () { resetAnswerBoxes(); });
 
-  var wordList = createWordList(1);
-  var hskAnalytics = createAnalytics(wordList, flashcardDisplayMode);
+  let wordList = createWordList(1);
+  let hskAnalytics = createAnalytics(wordList, flashcardDisplayMode);
 
-  var beginSession = function () {
+  let beginSession = function () {
     hskAnalytics = createAnalytics(wordList, flashcardDisplayMode);
     hskAnalytics.reportBeginSession();
     completeSessionView.clear();
@@ -29,7 +29,7 @@ var createController = function (flashcardDisplayMode, textSize) {
     flashcardController.startNewFlashcard();
   }
 
-  var completeSession = function () {
+  let completeSession = function () {
     hskAnalytics.reportCompleteSession();
     if (flashcardController) {
       flashcardController.clear();
@@ -38,7 +38,7 @@ var createController = function (flashcardDisplayMode, textSize) {
     completeSessionView.displaySessionCompleteMenu();
   }
 
-  var newSession = function () {
+  let newSession = function () {
     beginSessionView.clear();
     beginSessionView.hideCreateNewSessionButton();
     if (flashcardController) {
@@ -49,7 +49,7 @@ var createController = function (flashcardDisplayMode, textSize) {
     beginSessionView.displayBeginSessionMenu();
   }
 
-  var scope = {
+  let scope = {
     getDisplayMode : function () {
       return flashcardDisplayMode;
     },
@@ -61,10 +61,10 @@ var createController = function (flashcardDisplayMode, textSize) {
     newSession : newSession
   };
 
-  var beginSessionView = createBeginSessionView(scope, canvas, wordList, textSize);
-  var completeSessionView = createCompleteSessionView(scope, canvas, textSize);
+  let beginSessionView = createBeginSessionView(scope, canvas, wordList, textSize);
+  let completeSessionView = createCompleteSessionView(scope, canvas, textSize);
 
-  var interactionController = createInteractionController(scope);
+  let interactionController = createInteractionController(scope);
 
   return {
     beginSession : beginSession,
